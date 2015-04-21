@@ -2,7 +2,7 @@
 
 ## Installation
 
-Development:
+### Development:
 1. `git clone`
 2. `cd SysVentoryServer`
 3. `composer install`
