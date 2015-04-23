@@ -10,4 +10,4 @@ git branch -v
 git checkout -b prod
 git status
 git branch
-git push --force --quiet "https://${GH_TOKEN}@github.com/Cogax/SysVentory.git" prod:prod
+git push --force --quiet "https://${GH_TOKEN}@github.com/Cogax/SysVentoryServer.git" prod:prod
