@@ -10,4 +10,4 @@ git branch -v
 git checkout -b prod
 git status
 git branch
-git push --force --quiet "https://${GH_TOKEN}@{GH_REF}" prod:prod
+git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" prod:prod
