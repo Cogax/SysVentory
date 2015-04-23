@@ -14,3 +14,7 @@ script:
 branches:
   only:
     - master
+
+notifications:
+  email:
+    - andygyr@gmx.ch
