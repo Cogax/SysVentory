@@ -10,3 +10,7 @@ before_script:
 
 script:
   - phpunit -c app/
+
+branches:
+  only:
+    - master
