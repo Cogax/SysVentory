@@ -3,6 +3,7 @@ set -e
 
 git config user.name "Cogax"
 git config user.email "andygyr@gmx.ch"
+git config --global url."https://".insteadOf git://
 
 git status
 git branch -v
