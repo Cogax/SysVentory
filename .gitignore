@@ -9,6 +9,7 @@
 /composer.phar
 /vendor/
 /web/bundles/
+app/cov/
 
 .idea/
 *.log
