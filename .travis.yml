@@ -1,20 +1,27 @@
 language: php
 
 php:
-   - 5.3
-   - 5.4
-   - 5.5
+- 5.3
+- 5.4
+- 5.5
 
 before_script:
-  - composer install
+- composer install
 
 script:
-  - phpunit -c app/
+- phpunit -c app/
 
 branches:
   only:
-    - master
+  - master
 
 notifications:
   email:
-    - andygyr@gmx.ch
+  - andygyr@gmx.ch
+
+after_success:
+- bash deploy.sh
+
+env:
+  global:
+    secure: hIgpKHqhJBc6zD82Lrx81of+vw02F6OjqV9AVua/d4Iv2fOmQ8fKl0EsgynDeaC+iUWApJ7/Ep5IAjU68CFr+7yYuGq7ijFO+rmWY2Qqibom7DYXX1WTGf380HISvOqlk5w9gbAeudmpL84wAcHQvhHNh5h0lVFQEdUVkwEt7Ww=
