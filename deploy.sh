@@ -4,7 +4,9 @@ set -e
 git config user.name "Cogax"
 git config user.email "andygyr@gmx.ch"
 
-git fetch origin prod
-git checkout prod
-git merge master
-git push origin prod
+git status
+git branch -v
+git checkout -b prod
+git status
+git branch
+git push -u origin prod
