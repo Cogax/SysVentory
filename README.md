@@ -4,7 +4,7 @@
 * `master` is the development branch which isn't always sable
 * `prod` is the productive branch, which always should be stable
 
-### CI
+### Continuous Integration
 https://travis-ci.org/Cogax/SysVentoryServer
 * Builds only `master` branch
 * If `master` build success it will push to `prod` branch
