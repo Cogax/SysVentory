@@ -16,8 +16,4 @@ class DefaultControllerTest extends WebTestCase
         $this->assertTrue($crawler->filter('html:contains("Homepage")')
             ->count() > 0);
     }
-
-    public function testWrong() {
-        $this->assertTrue(false);
-    }
 }
