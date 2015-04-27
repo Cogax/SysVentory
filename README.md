@@ -1,4 +1,5 @@
 # SysVentoryServer
+[![Build Status](https://travis-ci.org/Cogax/SysVentoryServer.svg?branch=master)](https://travis-ci.org/Cogax/SysVentoryServer)
 
 ## Branches
 * `master` is the development branch which isn't always sable
