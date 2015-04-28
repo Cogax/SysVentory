@@ -7,11 +7,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
-    /**
-     * @Route("/app/example", name="homepage")
-     */
-    public function indexAction()
+    public function showAction($id)
     {
-        return $this->render('default/index.html.twig');
+        $networkInterface = $this->getDoctrine()
+          ->getRepository('AppBundle:NetworkInterface')
+          ->find($id);
+
+        if(!$networkInterface) {
+            throw $this->createNotFoundException('No NetworkInterface found
+            by id: '.$id);
+        }
+
+        return $this->render('AppBundle:Default:network_show.html.twig',
+          array('interface' => $networkInterface));
     }
+
+
 }
