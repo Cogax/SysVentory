@@ -21,6 +21,4 @@ class DefaultController extends Controller
         return $this->render('AppBundle:Default:network_show.html.twig',
           array('interface' => $networkInterface));
     }
-
-
 }
