@@ -1,0 +1,4 @@
+app_compositionhistory:
+    resource: "@AppBundle/Resources/config/routing/compositionhistory.yml"
+    prefix:   /compositionhistory
+

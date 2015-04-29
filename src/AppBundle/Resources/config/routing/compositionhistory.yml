@@ -1,0 +1,30 @@
+compositionhistory:
+    path:     /
+    defaults: { _controller: "AppBundle:CompositionHistory:index" }
+
+compositionhistory_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:CompositionHistory:show" }
+
+compositionhistory_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:CompositionHistory:new" }
+
+compositionhistory_create:
+    path:     /create
+    defaults: { _controller: "AppBundle:CompositionHistory:create" }
+    methods:  POST
+
+compositionhistory_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:CompositionHistory:edit" }
+
+compositionhistory_update:
+    path:     /{id}/update
+    defaults: { _controller: "AppBundle:CompositionHistory:update" }
+    methods:  [POST, PUT]
+
+compositionhistory_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:CompositionHistory:delete" }
+    methods:  [POST, DELETE]
