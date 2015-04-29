@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Software
  *
- * @ORM\Table()
+ * @ORM\Table(name="software")
  * @ORM\Entity
  */
 class Software

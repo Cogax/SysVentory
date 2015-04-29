@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Cpu
  *
- * @ORM\Table()
+ * @ORM\Table(name="cpu")
  * @ORM\Entity
  */
 class Cpu

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Printer
  *
- * @ORM\Table()
+ * @ORM\Table(name="printer")
  * @ORM\Entity
  */
 class Printer

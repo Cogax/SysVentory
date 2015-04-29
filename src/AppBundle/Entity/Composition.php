@@ -6,9 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Composition
- *
- * @ORM\Table()
+ *select column
  * @ORM\Entity
+ * @ORM\Table(name="composition")
  */
 class Composition
 {

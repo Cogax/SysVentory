@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Computer
  *
- * @ORM\Table()
+ * @ORM\Table(name="computer")
  * @ORM\Entity
  */
 class Computer

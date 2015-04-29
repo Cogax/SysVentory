@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * OperatingSystem
  *
- * @ORM\Table()
+ * @ORM\Table(name="operatingsystem")
  * @ORM\Entity
  */
 class OperatingSystem

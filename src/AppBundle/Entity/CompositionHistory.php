@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * CompositionHistory
  *
- * @ORM\Table()
+ * @ORM\Table(name="compositionhitory")
  * @ORM\Entity
  */
 class CompositionHistory

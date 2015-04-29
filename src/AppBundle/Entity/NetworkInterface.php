@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * NetworkInterface
  *
- * @ORM\Table()
+ * @ORM\Table(name="networkinterface")
  * @ORM\Entity
  */
 class NetworkInterface
