@@ -34,9 +34,9 @@ class Composition
     private $networkInterfaces;
 
     /**
-     * @ORM\OneToOne(targetEntity="Computer")
+     * @ORM\OneToOne(targetEntity="Machine")
      */
-    private $computer;
+    private $machine;
 
     /**
      * @ORM\ManyToMany(targetEntity="Cpu")
@@ -130,29 +130,6 @@ class Composition
     public function getNetworkInterfaces()
     {
         return $this->networkInterfaces;
-    }
-
-    /**
-     * Set computer
-     *
-     * @param \AppBundle\Entity\Computer
-     * @return Composition
-     */
-    public function setComputer(\AppBundle\Entity\Computer $computer = null)
-    {
-        $this->computer = $computer;
-
-        return $this;
-    }
-
-    /**
-     * Get computer
-     *
-     * @return \AppBundle\Entity\Computer
-     */
-    public function getComputer()
-    {
-        return $this->computer;
     }
 
     /**
@@ -285,5 +262,28 @@ class Composition
     public function getPrinter()
     {
         return $this->printer;
+    }
+
+    /**
+     * Set machine
+     *
+     * @param \AppBundle\Entity\Machine $machine
+     * @return Composition
+     */
+    public function setMachine(\AppBundle\Entity\Machine $machine = null)
+    {
+        $this->machine = $machine;
+
+        return $this;
+    }
+
+    /**
+     * Get machine
+     *
+     * @return \AppBundle\Entity\Machine 
+     */
+    public function getMachine()
+    {
+        return $this->machine;
     }
 }

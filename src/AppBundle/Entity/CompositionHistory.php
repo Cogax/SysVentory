@@ -36,7 +36,7 @@ class CompositionHistory
     private $time;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Composition")
+     * @ORM\OneToOne(targetEntity="Composition")
      */
     private $composition;
 
@@ -135,5 +135,18 @@ class CompositionHistory
     public function getComposition()
     {
         return $this->composition;
+    }
+
+    /**
+     * Set composition
+     *
+     * @param \AppBundle\Entity\Composition $composition
+     * @return CompositionHistory
+     */
+    public function setComposition(\AppBundle\Entity\Composition $composition = null)
+    {
+        $this->composition = $composition;
+
+        return $this;
     }
 }

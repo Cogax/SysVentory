@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Computer
  *
- * @ORM\Table(name="computer")
+ * @ORM\Table(name="machine")
  * @ORM\Entity
  */
-class Computer
+class Machine
 {
     /**
      * @var integer
