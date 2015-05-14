@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:element name="composition">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="machine"/>
+                <xs:element ref="operating_system"/>
+                <xs:element ref="softwares"/>
+                <xs:element ref="cpus"/>
+                <xs:element ref="network_interfaces"/>
+                <xs:element ref="printers"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="machine">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="manufacturer" type="xs:string"></xs:element>
+                <xs:element name="model" type="xs:string"></xs:element>
+                <xs:element name="serial_number" type="xs:string"></xs:element>
+                <xs:element name="memory" type="xs:int"></xs:element>
+                <xs:element name="computer_name" type="xs:string"></xs:element>
+                <xs:element name="uuid" type="xs:string"></xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="operating_system">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"></xs:element>
+                <xs:element name="version" type="xs:string"></xs:element>
+                <xs:element name="service_pack" type="xs:int"></xs:element>
+                <xs:element name="architecture" type="xs:string"></xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="softwares">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="software" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="name" type="xs:string"></xs:element>
+                            <xs:element name="version" type="xs:string"></xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="cpus">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="cpu" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="name" type="xs:string"></xs:element>
+                            <xs:element name="family" type="xs:string"></xs:element>
+                            <xs:element name="clock" type="xs:int"></xs:element>
+                            <xs:element name="cores" type="xs:int"></xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="network_interfaces">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="network_interface" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="description" type="xs:string"></xs:element>
+                            <xs:element name="ipv4" type="xs:string"></xs:element>
+                            <xs:element name="ipv4Subnet" type="xs:string"></xs:element>
+                            <xs:element name="ipv4DefaultGateway" type="xs:string"></xs:element>
+                            <xs:element name="ipv6" type="xs:string"></xs:element>
+                            <xs:element name="ipv6Subnet" type="xs:int"></xs:element>
+                            <xs:element name="ipv6DefaultGateway" type="xs:string"></xs:element>
+                            <xs:element name="dhcp" type="xs:boolean"></xs:element>
+                            <xs:element name="mac" type="xs:string"></xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="printers">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="printer" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="name" type="xs:string"></xs:element>
+                            <xs:element name="driver" type="xs:string"></xs:element>
+                            <xs:element name="version" type="xs:string"></xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

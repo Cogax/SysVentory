@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Software
+ * Network
  *
- * @ORM\Table(name="software")
+ * @ORM\Table(name="network")
  * @ORM\Entity
  */
-class Software extends BaseEntity
+class Network extends BaseEntity
 {
     /**
      * @var string
@@ -22,15 +22,15 @@ class Software extends BaseEntity
     /**
      * @var string
      *
-     * @ORM\Column(name="version", type="string", length=255)
+     * @ORM\Column(name="netRange", type="string", length=255)
      */
-    private $version;
+    private $netRange;
 
     /**
      * Set name
      *
      * @param string $name
-     * @return Software
+     * @return Network
      */
     public function setName($name)
     {
@@ -50,25 +50,25 @@ class Software extends BaseEntity
     }
 
     /**
-     * Set version
+     * Set netRange
      *
-     * @param string $version
-     * @return Software
+     * @param string $netRange
+     * @return Network
      */
-    public function setVersion($version)
+    public function setNetRange($netRange)
     {
-        $this->version = $version;
+        $this->netRange = $netRange;
 
         return $this;
     }
 
     /**
-     * Get version
+     * Get netRange
      *
      * @return string 
      */
-    public function getVersion()
+    public function getNetRange()
     {
-        return $this->version;
+        return $this->netRange;
     }
 }

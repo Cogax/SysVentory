@@ -1,8 +1,7 @@
-app_compositionhistory:
-    resource: "@AppBundle/Resources/config/routing/compositionhistory.yml"
-    prefix:   /compositionhistory
+app_import:
+    resource: "@AppBundle/Resources/config/routing/import.yml"
+    prefix:   /import
 
-
-import:
-    path:     /import
-    defaults: { _controller: AppBundle:DataImport:import }
+export:
+    path:     /export
+    defaults: { _controller: AppBundle:Export:export }

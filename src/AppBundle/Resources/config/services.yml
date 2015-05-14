@@ -1,0 +1,14 @@
+services:
+  app.composition_controller:
+    class: AppBundle\Controller\CompositionController
+    arguments: [ @doctrine.orm.entity_manager, @app.hash_generator, @app.serializer ]
+
+  app.xsd_validator:
+    class: AppBundle\Util\XsdValidator
+
+  app.hash_generator:
+    class: AppBundle\Util\HashGenerator
+
+  app.serializer:
+    class: AppBundle\Util\Serializer
+    arguments: [ @jms_serializer ]

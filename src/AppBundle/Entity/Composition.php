@@ -3,109 +3,77 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Composition
- *select column
  * @ORM\Entity
  * @ORM\Table(name="composition")
  */
-class Composition
+class Composition extends BaseEntity
 {
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @var string
+     * @ORM\Column(name="hash", type="string", length=32, unique=true)
      */
-    private $id;
+    private $hash;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="time", type="datetimetz")
-     */
-    private $time;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="NetworkInterface")
+     * @ORM\ManyToMany(targetEntity="NetworkInterface", cascade={"persist"})
+     * @JMS\Type("ArrayCollection<AppBundle\Entity\NetworkInterface>")
+     * @JMS\XmlList(entry="network_interface")
      */
     private $networkInterfaces;
 
     /**
-     * @ORM\OneToOne(targetEntity="Machine")
+     * @ORM\OneToOne(targetEntity="Machine", cascade={"persist"})
      */
     private $machine;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Cpu")
+     * @ORM\ManyToMany(targetEntity="Cpu", cascade={"persist"})
+     * @JMS\Type("ArrayCollection<AppBundle\Entity\Cpu>")
+     * @JMS\XmlList(entry="cpu")
      */
-    private $cpu;
+    private $cpus;
 
     /**
-     * @ORM\ManyToMany(targetEntity="OperatingSystem")
+     * @ORM\OneToOne(targetEntity="OperatingSystem", cascade={"persist"})
      */
-    private $operatingSystems;
+    private $operatingSystem;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Software")
+     * @ORM\ManyToMany(targetEntity="Software", cascade={"persist"})
+     * @JMS\Type("ArrayCollection<AppBundle\Entity\Software>")
+     * @JMS\XmlList(entry="software")
      */
-    private $software;
+    private $softwares;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Printer")
+     * @ORM\ManyToMany(targetEntity="Printer", cascade={"persist"})
+     * @JMS\Type("ArrayCollection<AppBundle\Entity\Printer>")
+     * @JMS\XmlList(entry="printer")
      */
-    private $printer;
-
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set time
-     *
-     * @param \DateTime $time
-     * @return Composition
-     */
-    public function setTime($time)
-    {
-        $this->time = $time;
-
-        return $this;
-    }
-
-    /**
-     * Get time
-     *
-     * @return \DateTime 
-     */
-    public function getTime()
-    {
-        return $this->time;
-    }
+    private $printers;
+    
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->networkInterfaces = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->cpus = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->softwares = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->printers = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
      * Add networkInterfaces
      *
-     * @param \AppBundle\Entity\NetworkInterfaces $networkInterfaces
+     * @param \AppBundle\Entity\NetworkInterface $networkInterfaces
      * @return Composition
      */
-    public function addNetworkInterface(\AppBundle\Entity\NetworkInterfaces $networkInterfaces)
+    public function addNetworkInterface(\AppBundle\Entity\NetworkInterface $networkInterfaces)
     {
         $this->networkInterfaces[] = $networkInterfaces;
 
@@ -115,9 +83,9 @@ class Composition
     /**
      * Remove networkInterfaces
      *
-     * @param \AppBundle\Entity\NetworkInterfaces $networkInterfaces
+     * @param \AppBundle\Entity\NetworkInterface $networkInterfaces
      */
-    public function removeNetworkInterface(\AppBundle\Entity\NetworkInterfaces $networkInterfaces)
+    public function removeNetworkInterface(\AppBundle\Entity\NetworkInterface $networkInterfaces)
     {
         $this->networkInterfaces->removeElement($networkInterfaces);
     }
@@ -130,138 +98,6 @@ class Composition
     public function getNetworkInterfaces()
     {
         return $this->networkInterfaces;
-    }
-
-    /**
-     * Add cpu
-     *
-     * @param \AppBundle\Entity\Cpu $cpu
-     * @return Composition
-     */
-    public function addCpu(\AppBundle\Entity\Cpu $cpu)
-    {
-        $this->cpu[] = $cpu;
-
-        return $this;
-    }
-
-    /**
-     * Remove cpu
-     *
-     * @param \AppBundle\Entity\Cpu $cpu
-     */
-    public function removeCpu(\AppBundle\Entity\Cpu $cpu)
-    {
-        $this->cpu->removeElement($cpu);
-    }
-
-    /**
-     * Get cpu
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getCpu()
-    {
-        return $this->cpu;
-    }
-
-    /**
-     * Add operatingSystems
-     *
-     * @param \AppBundle\Entity\OperatingSystem $operatingSystems
-     * @return Composition
-     */
-    public function addOperatingSystem(\AppBundle\Entity\OperatingSystem $operatingSystems)
-    {
-        $this->operatingSystems[] = $operatingSystems;
-
-        return $this;
-    }
-
-    /**
-     * Remove operatingSystems
-     *
-     * @param \AppBundle\Entity\OperatingSystem $operatingSystems
-     */
-    public function removeOperatingSystem(\AppBundle\Entity\OperatingSystem $operatingSystems)
-    {
-        $this->operatingSystems->removeElement($operatingSystems);
-    }
-
-    /**
-     * Get operatingSystems
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getOperatingSystems()
-    {
-        return $this->operatingSystems;
-    }
-
-    /**
-     * Add software
-     *
-     * @param \AppBundle\Entity\Software $software
-     * @return Composition
-     */
-    public function addSoftware(\AppBundle\Entity\Software $software)
-    {
-        $this->software[] = $software;
-
-        return $this;
-    }
-
-    /**
-     * Remove software
-     *
-     * @param \AppBundle\Entity\Software $software
-     */
-    public function removeSoftware(\AppBundle\Entity\Software $software)
-    {
-        $this->software->removeElement($software);
-    }
-
-    /**
-     * Get software
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getSoftware()
-    {
-        return $this->software;
-    }
-
-    /**
-     * Add printer
-     *
-     * @param \AppBundle\Entity\Printer $printer
-     * @return Composition
-     */
-    public function addPrinter(\AppBundle\Entity\Printer $printer)
-    {
-        $this->printer[] = $printer;
-
-        return $this;
-    }
-
-    /**
-     * Remove printer
-     *
-     * @param \AppBundle\Entity\Printer $printer
-     */
-    public function removePrinter(\AppBundle\Entity\Printer $printer)
-    {
-        $this->printer->removeElement($printer);
-    }
-
-    /**
-     * Get printer
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getPrinter()
-    {
-        return $this->printer;
     }
 
     /**
@@ -285,5 +121,150 @@ class Composition
     public function getMachine()
     {
         return $this->machine;
+    }
+
+    /**
+     * Add cpus
+     *
+     * @param \AppBundle\Entity\Cpu $cpus
+     * @return Composition
+     */
+    public function addCpus(\AppBundle\Entity\Cpu $cpus)
+    {
+        $this->cpus[] = $cpus;
+
+        return $this;
+    }
+
+    /**
+     * Remove cpus
+     *
+     * @param \AppBundle\Entity\Cpu $cpus
+     */
+    public function removeCpus(\AppBundle\Entity\Cpu $cpus)
+    {
+        $this->cpus->removeElement($cpus);
+    }
+
+    /**
+     * Get cpus
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCpus()
+    {
+        return $this->cpus;
+    }
+
+    /**
+     * Set operatingSystem
+     *
+     * @param \AppBundle\Entity\OperatingSystem $operatingSystem
+     * @return Composition
+     */
+    public function setOperatingSystem(\AppBundle\Entity\OperatingSystem $operatingSystem = null)
+    {
+        $this->operatingSystem = $operatingSystem;
+
+        return $this;
+    }
+
+    /**
+     * Get operatingSystem
+     *
+     * @return \AppBundle\Entity\OperatingSystem 
+     */
+    public function getOperatingSystem()
+    {
+        return $this->operatingSystem;
+    }
+
+    /**
+     * Add softwares
+     *
+     * @param \AppBundle\Entity\Software $softwares
+     * @return Composition
+     */
+    public function addSoftware(\AppBundle\Entity\Software $softwares)
+    {
+        $this->softwares[] = $softwares;
+
+        return $this;
+    }
+
+    /**
+     * Remove softwares
+     *
+     * @param \AppBundle\Entity\Software $softwares
+     */
+    public function removeSoftware(\AppBundle\Entity\Software $softwares)
+    {
+        $this->softwares->removeElement($softwares);
+    }
+
+    /**
+     * Get softwares
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSoftwares()
+    {
+        return $this->softwares;
+    }
+
+    /**
+     * Add printers
+     *
+     * @param \AppBundle\Entity\Printer $printers
+     * @return Composition
+     */
+    public function addPrinter(\AppBundle\Entity\Printer $printers)
+    {
+        $this->printers[] = $printers;
+
+        return $this;
+    }
+
+    /**
+     * Remove printers
+     *
+     * @param \AppBundle\Entity\Printer $printers
+     */
+    public function removePrinter(\AppBundle\Entity\Printer $printers)
+    {
+        $this->printers->removeElement($printers);
+    }
+
+    /**
+     * Get printers
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPrinters()
+    {
+        return $this->printers;
+    }
+
+    /**
+     * Set hash
+     *
+     * @param string $hash
+     * @return Composition
+     */
+    public function setHash($hash)
+    {
+        $this->hash = $hash;
+
+        return $this;
+    }
+
+    /**
+     * Get hash
+     *
+     * @return string 
+     */
+    public function getHash()
+    {
+        return $this->hash;
     }
 }

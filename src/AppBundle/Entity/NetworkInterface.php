@@ -10,58 +10,63 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="networkinterface")
  * @ORM\Entity
  */
-class NetworkInterface
+class NetworkInterface extends BaseEntity
 {
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="description", type="string", length=255, nullable=true)
      */
-    private $id;
+    private $description = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255)
-     */
-    private $description;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="ipv4", type="string", length=255)
+     * @ORM\Column(name="ipv4", type="string")
      */
     private $ipv4;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ipv6", type="string", length=255)
+     * @ORM\Column(name="ipv4Subnet", type="string", length=255, nullable=true)
      */
-    private $ipv6;
+    private $ipv4Subnet = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="subnet", type="string", length=255)
+     * @ORM\Column(name="ipv4DefaultGateway", type="string", length=255, nullable=true)
      */
-    private $subnet;
+    private $ipv4DefaultGateway = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="defaultGateway", type="string", length=255)
+     * @ORM\Column(name="ipv6", type="string", length=255, nullable=true)
      */
-    private $defaultGateway;
+    private $ipv6 = null;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ipv6Subnet", type="string", length=255, nullable=true)
+     */
+    private $ipv6Subnet = null;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ipv6DefaultGateway", type="string", length=255, nullable=true)
+     */
+    private $ipv6DefaultGateway = null;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="dhcp", type="boolean")
      */
-    private $dhcp;
+    private $dhcp = false;
 
     /**
      * @var string
@@ -69,17 +74,6 @@ class NetworkInterface
      * @ORM\Column(name="mac", type="string", length=255)
      */
     private $mac;
-
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set description
@@ -128,6 +122,52 @@ class NetworkInterface
     }
 
     /**
+     * Set ipv4Subnet
+     *
+     * @param string $ipv4Subnet
+     * @return NetworkInterface
+     */
+    public function setIpv4Subnet($ipv4Subnet)
+    {
+        $this->ipv4Subnet = $ipv4Subnet;
+
+        return $this;
+    }
+
+    /**
+     * Get ipv4Subnet
+     *
+     * @return string 
+     */
+    public function getIpv4Subnet()
+    {
+        return $this->ipv4Subnet;
+    }
+
+    /**
+     * Set ipv4DefaultGateway
+     *
+     * @param string $ipv4DefaultGateway
+     * @return NetworkInterface
+     */
+    public function setIpv4DefaultGateway($ipv4DefaultGateway)
+    {
+        $this->ipv4DefaultGateway = $ipv4DefaultGateway;
+
+        return $this;
+    }
+
+    /**
+     * Get ipv4DefaultGateway
+     *
+     * @return string 
+     */
+    public function getIpv4DefaultGateway()
+    {
+        return $this->ipv4DefaultGateway;
+    }
+
+    /**
      * Set ipv6
      *
      * @param string $ipv6
@@ -151,49 +191,49 @@ class NetworkInterface
     }
 
     /**
-     * Set subnet
+     * Set ipv6Subnet
      *
-     * @param string $subnet
+     * @param string $ipv6Subnet
      * @return NetworkInterface
      */
-    public function setSubnet($subnet)
+    public function setIpv6Subnet($ipv6Subnet)
     {
-        $this->subnet = $subnet;
+        $this->ipv6Subnet = $ipv6Subnet;
 
         return $this;
     }
 
     /**
-     * Get subnet
+     * Get ipv6Subnet
      *
      * @return string 
      */
-    public function getSubnet()
+    public function getIpv6Subnet()
     {
-        return $this->subnet;
+        return $this->ipv6Subnet;
     }
 
     /**
-     * Set defaultGateway
+     * Set ipv6DefaultGateway
      *
-     * @param string $defaultGateway
+     * @param string $ipv6DefaultGateway
      * @return NetworkInterface
      */
-    public function setDefaultGateway($defaultGateway)
+    public function setIpv6DefaultGateway($ipv6DefaultGateway)
     {
-        $this->defaultGateway = $defaultGateway;
+        $this->ipv6DefaultGateway = $ipv6DefaultGateway;
 
         return $this;
     }
 
     /**
-     * Get defaultGateway
+     * Get ipv6DefaultGateway
      *
      * @return string 
      */
-    public function getDefaultGateway()
+    public function getIpv6DefaultGateway()
     {
-        return $this->defaultGateway;
+        return $this->ipv6DefaultGateway;
     }
 
     /**

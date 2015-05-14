@@ -10,17 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="operatingsystem")
  * @ORM\Entity
  */
-class OperatingSystem
+class OperatingSystem extends BaseEntity
 {
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
     /**
      * @var string
      *
@@ -35,16 +26,19 @@ class OperatingSystem
      */
     private $version;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="servicePack", type="string", length=255, nullable=true)
+     */
+    private $servicePack = null;
 
     /**
-     * Get id
+     * @var string
      *
-     * @return integer 
+     * @ORM\Column(name="architecture", type="string", length=255)
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $architecture;
 
     /**
      * Set name
@@ -90,5 +84,51 @@ class OperatingSystem
     public function getVersion()
     {
         return $this->version;
+    }
+
+    /**
+     * Set servicePack
+     *
+     * @param string $servicePack
+     * @return OperatingSystem
+     */
+    public function setServicePack($servicePack)
+    {
+        $this->servicePack = $servicePack;
+
+        return $this;
+    }
+
+    /**
+     * Get servicePack
+     *
+     * @return string 
+     */
+    public function getServicePack()
+    {
+        return $this->servicePack;
+    }
+
+    /**
+     * Set architecture
+     *
+     * @param string $architecture
+     * @return OperatingSystem
+     */
+    public function setArchitecture($architecture)
+    {
+        $this->architecture = $architecture;
+
+        return $this;
+    }
+
+    /**
+     * Get architecture
+     *
+     * @return string 
+     */
+    public function getArchitecture()
+    {
+        return $this->architecture;
     }
 }

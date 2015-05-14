@@ -10,65 +10,59 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="machine")
  * @ORM\Entity
  */
-class Machine
+class Machine extends BaseEntity
 {
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="manufracturer", type="string", length=255, nullable=true)
      */
-    private $id;
+    private $manufracturer = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="manufraturer", type="string", length=255)
+     * @ORM\Column(name="model", type="string", length=255, nullable=true)
      */
-    private $manufraturer;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="mdoel", type="string", length=255)
-     */
-    private $mdoel;
+    private $model = null;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="memory", type="integer")
+     * @ORM\Column(name="memory", type="integer", nullable=true)
      */
-    private $memory;
+    private $memory = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="computerName", type="string", length=255)
+     * @ORM\Column(name="computerName", type="string", length=255, nullable=true)
      */
-    private $computerName;
-
+    private $computerName = null;
 
     /**
-     * Get id
+     * @var string
      *
-     * @return integer 
+     * @ORM\Column(name="serialNumber", type="string", length=255)
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $serialNumber;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="uuid", type="string")
+     */
+    private $uuid;
 
     /**
      * Set manufraturer
      *
      * @param string $manufraturer
-     * @return Computer
+     * @return Machine
      */
-    public function setManufraturer($manufraturer)
+    public function setManufraturer($manufracturer)
     {
-        $this->manufraturer = $manufraturer;
+        $this->manufracturer = $manufracturer;
 
         return $this;
     }
@@ -80,37 +74,37 @@ class Machine
      */
     public function getManufraturer()
     {
-        return $this->manufraturer;
+        return $this->manufracturer;
     }
 
     /**
-     * Set mdoel
+     * Set model
      *
-     * @param string $mdoel
-     * @return Computer
+     * @param string $model
+     * @return Machine
      */
-    public function setMdoel($mdoel)
+    public function setModel($model)
     {
-        $this->mdoel = $mdoel;
+        $this->model = $model;
 
         return $this;
     }
 
     /**
-     * Get mdoel
+     * Get model
      *
      * @return string 
      */
-    public function getMdoel()
+    public function getModel()
     {
-        return $this->mdoel;
+        return $this->model;
     }
 
     /**
      * Set memory
      *
      * @param integer $memory
-     * @return Computer
+     * @return Machine
      */
     public function setMemory($memory)
     {
@@ -133,7 +127,7 @@ class Machine
      * Set computerName
      *
      * @param string $computerName
-     * @return Computer
+     * @return Machine
      */
     public function setComputerName($computerName)
     {
@@ -150,5 +144,74 @@ class Machine
     public function getComputerName()
     {
         return $this->computerName;
+    }
+
+    /**
+     * Set serialNumber
+     *
+     * @param string $serialNumber
+     * @return Machine
+     */
+    public function setSerialNumber($serialNumber)
+    {
+        $this->serialNumber = $serialNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get serialNumber
+     *
+     * @return string 
+     */
+    public function getSerialNumber()
+    {
+        return $this->serialNumber;
+    }
+
+    /**
+     * Set uuid
+     *
+     * @param guid $uuid
+     * @return Machine
+     */
+    public function setUuid($uuid)
+    {
+        $this->uuid = $uuid;
+
+        return $this;
+    }
+
+    /**
+     * Get uuid
+     *
+     * @return guid 
+     */
+    public function getUuid()
+    {
+        return $this->uuid;
+    }
+
+    /**
+     * Set manufracturer
+     *
+     * @param string $manufracturer
+     * @return Machine
+     */
+    public function setManufracturer($manufracturer)
+    {
+        $this->manufracturer = $manufracturer;
+
+        return $this;
+    }
+
+    /**
+     * Get manufracturer
+     *
+     * @return string 
+     */
+    public function getManufracturer()
+    {
+        return $this->manufracturer;
     }
 }
