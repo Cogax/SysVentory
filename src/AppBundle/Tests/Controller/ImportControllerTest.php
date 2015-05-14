@@ -11,7 +11,7 @@ class ImportControllerTest extends WebTestCase {
         // Create a new client
         $client = static::createClient();
 
-        $xml = file_get_contents(getcwd().'/../web/target.xml');
+        $xml = file_get_contents(getcwd().'/web/target.xml');
         $client->request(
           'POST',
           '/import/',
