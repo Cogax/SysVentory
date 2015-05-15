@@ -16,7 +16,7 @@
     <xs:element name="machine">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="manufacturer" type="xs:string"></xs:element>
+                <xs:element name="manufracturer" type="xs:string"></xs:element>
                 <xs:element name="model" type="xs:string"></xs:element>
                 <xs:element name="serial_number" type="xs:string"></xs:element>
                 <xs:element name="memory" type="xs:int"></xs:element>
@@ -73,11 +73,11 @@
                         <xs:sequence>
                             <xs:element name="description" type="xs:string"></xs:element>
                             <xs:element name="ipv4" type="xs:string"></xs:element>
-                            <xs:element name="ipv4Subnet" type="xs:string"></xs:element>
-                            <xs:element name="ipv4DefaultGateway" type="xs:string"></xs:element>
+                            <xs:element name="ipv4_subnet" type="xs:string"></xs:element>
+                            <xs:element name="ipv4_default_gateway" type="xs:string"></xs:element>
                             <xs:element name="ipv6" type="xs:string"></xs:element>
-                            <xs:element name="ipv6Subnet" type="xs:int"></xs:element>
-                            <xs:element name="ipv6DefaultGateway" type="xs:string"></xs:element>
+                            <xs:element name="ipv6_subnet" type="xs:int"></xs:element>
+                            <xs:element name="ipv6_default_gateway" type="xs:string"></xs:element>
                             <xs:element name="dhcp" type="xs:boolean"></xs:element>
                             <xs:element name="mac" type="xs:string"></xs:element>
                         </xs:sequence>

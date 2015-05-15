@@ -54,13 +54,15 @@ class Machine extends BaseEntity
      */
     private $uuid;
 
+
+
     /**
-     * Set manufraturer
+     * Set manufracturer
      *
-     * @param string $manufraturer
+     * @param string $manufracturer
      * @return Machine
      */
-    public function setManufraturer($manufracturer)
+    public function setManufracturer($manufracturer)
     {
         $this->manufracturer = $manufracturer;
 
@@ -68,11 +70,11 @@ class Machine extends BaseEntity
     }
 
     /**
-     * Get manufraturer
+     * Get manufracturer
      *
      * @return string 
      */
-    public function getManufraturer()
+    public function getManufracturer()
     {
         return $this->manufracturer;
     }
@@ -172,7 +174,7 @@ class Machine extends BaseEntity
     /**
      * Set uuid
      *
-     * @param guid $uuid
+     * @param string $uuid
      * @return Machine
      */
     public function setUuid($uuid)
@@ -185,33 +187,10 @@ class Machine extends BaseEntity
     /**
      * Get uuid
      *
-     * @return guid 
+     * @return string 
      */
     public function getUuid()
     {
         return $this->uuid;
-    }
-
-    /**
-     * Set manufracturer
-     *
-     * @param string $manufracturer
-     * @return Machine
-     */
-    public function setManufracturer($manufracturer)
-    {
-        $this->manufracturer = $manufracturer;
-
-        return $this;
-    }
-
-    /**
-     * Get manufracturer
-     *
-     * @return string 
-     */
-    public function getManufracturer()
-    {
-        return $this->manufracturer;
     }
 }
