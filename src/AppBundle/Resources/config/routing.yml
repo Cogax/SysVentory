@@ -1,3 +1,7 @@
+app_scanhistory:
+    resource: "@AppBundle/Resources/config/routing/scanhistory.yml"
+    prefix:   /scanhistory
+
 app_import:
     resource: "@AppBundle/Resources/config/routing/import.yml"
     prefix:   /import
