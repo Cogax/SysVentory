@@ -10,8 +10,17 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="network")
  * @ORM\Entity
  */
-class Network extends BaseEntity
+class Network
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
     /**
      * @var string
      *
@@ -25,6 +34,16 @@ class Network extends BaseEntity
      * @ORM\Column(name="netRange", type="string", length=255)
      */
     private $netRange;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set name

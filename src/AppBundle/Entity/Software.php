@@ -10,8 +10,17 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="software")
  * @ORM\Entity
  */
-class Software extends BaseEntity
+class Software
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
     /**
      * @var string
      *
@@ -25,6 +34,16 @@ class Software extends BaseEntity
      * @ORM\Column(name="version", type="string", length=255)
      */
     private $version;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set name

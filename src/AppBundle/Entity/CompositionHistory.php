@@ -10,8 +10,17 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="compositionhitory")
  * @ORM\Entity
  */
-class CompositionHistory extends BaseEntity
+class CompositionHistory
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
     /**
      * @var string
      *
@@ -30,6 +39,16 @@ class CompositionHistory extends BaseEntity
      * @ORM\OneToOne(targetEntity="Composition")
      */
     private $composition;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set serialnumber
@@ -76,46 +95,6 @@ class CompositionHistory extends BaseEntity
     {
         return $this->time;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->composition = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add composition
-     *
-     * @param \AppBundle\Entity\Composition $composition
-     * @return CompositionHistory
-     */
-    public function addComposition(\AppBundle\Entity\Composition $composition)
-    {
-        $this->composition[] = $composition;
-
-        return $this;
-    }
-
-    /**
-     * Remove composition
-     *
-     * @param \AppBundle\Entity\Composition $composition
-     */
-    public function removeComposition(\AppBundle\Entity\Composition $composition)
-    {
-        $this->composition->removeElement($composition);
-    }
-
-    /**
-     * Get composition
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getComposition()
-    {
-        return $this->composition;
-    }
 
     /**
      * Set composition
@@ -128,5 +107,15 @@ class CompositionHistory extends BaseEntity
         $this->composition = $composition;
 
         return $this;
+    }
+
+    /**
+     * Get composition
+     *
+     * @return \AppBundle\Entity\Composition 
+     */
+    public function getComposition()
+    {
+        return $this->composition;
     }
 }

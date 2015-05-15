@@ -10,8 +10,17 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="printer")
  * @ORM\Entity
  */
-class Printer extends BaseEntity
+class Printer
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
     /**
      * @var string
      *
@@ -32,6 +41,16 @@ class Printer extends BaseEntity
      * @ORM\Column(name="version", type="string", length=255, nullable=true)
      */
     private $version = null;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set name

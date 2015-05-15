@@ -10,8 +10,17 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="operatingsystem")
  * @ORM\Entity
  */
-class OperatingSystem extends BaseEntity
+class OperatingSystem
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
     /**
      * @var string
      *
@@ -39,6 +48,16 @@ class OperatingSystem extends BaseEntity
      * @ORM\Column(name="architecture", type="string", length=255)
      */
     private $architecture;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set name

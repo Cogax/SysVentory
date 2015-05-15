@@ -10,8 +10,17 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="networkinterface")
  * @ORM\Entity
  */
-class NetworkInterface extends BaseEntity
+class NetworkInterface
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
     /**
      * @var string
      *
@@ -74,6 +83,16 @@ class NetworkInterface extends BaseEntity
      * @ORM\Column(name="mac", type="string", length=255)
      */
     private $mac;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set description

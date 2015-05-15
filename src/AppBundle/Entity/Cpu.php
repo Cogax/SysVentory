@@ -10,8 +10,17 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="cpu")
  * @ORM\Entity
  */
-class Cpu extends BaseEntity
+class Cpu
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
     /**
      * @var string
      * @ORM\Column(name="name", type="string", length=255)
@@ -35,6 +44,16 @@ class Cpu extends BaseEntity
      * @ORM\Column(name="cores", type="integer", nullable=true)
      */
     private $cores = null;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set name

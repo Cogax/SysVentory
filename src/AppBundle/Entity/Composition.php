@@ -10,8 +10,17 @@ use JMS\Serializer\Annotation as JMS;
  * @ORM\Entity
  * @ORM\Table(name="composition")
  */
-class Composition extends BaseEntity
+class Composition
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
     /**
      * @var string
      * @ORM\Column(name="hash", type="string", length=32, unique=true)
@@ -266,5 +275,15 @@ class Composition extends BaseEntity
     public function getHash()
     {
         return $this->hash;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }
