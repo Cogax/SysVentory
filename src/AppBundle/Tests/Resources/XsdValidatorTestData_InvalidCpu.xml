@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<composition>
+    <machine>
+        <manufracturer>Bochs</manufracturer>
+        <model>Bochs</model>
+        <serial_number></serial_number>
+        <memory>2147069952</memory>
+        <computer_name>CLIENT01-01</computer_name>
+        <uuid>79B60242-1F48-F7E9-8169-FB15DFB0B212</uuid>
+    </machine>
+    <operating_system>
+        <name>Microsoft Windows 7 Professional</name>
+        <version>php 6.1.7601</version>
+        <service_pack>1</service_pack>
+        <architecture>64-Bit</architecture>
+    </operating_system>
+    <softwares>
+        <software>
+            <name>Microsoft .NET Framework 4 Extended</name>
+            <version>4.0.30319</version>
+        </software>
+        <software>
+            <name>Microsoft .NET Framework 4 Client Profile</name>
+            <version>4.0.30319</version>
+        </software>
+    </softwares>
+    <cpus>
+        <cpu>
+            <name>Intel Xeon E312xx (Sandy Bridge)</name>
+            <family>Intel64 Family 6 Model 42 Stepping 1</family>
+            <clock>3301</clock>
+            <cores>3A</cores>
+        </cpu>
+    </cpus>
+    <network_interfaces>
+        <network_interface>
+            <description>Intel(R) PRO/1000 MT-Netzwerkverbindung</description>
+            <ipv4>172.17.82.101</ipv4>
+            <ipv4_subnet>255.255.255.0</ipv4_subnet>
+            <ipv4_default_gateway>172.17.82.1</ipv4_default_gateway>
+            <ipv6>2a02:16a0:ff02:82:44d0:53b2:4010:b3dc</ipv6>
+            <ipv6_subnet>64</ipv6_subnet>
+            <ipv6_default_gateway>fe80::5054:ff:fe6d:bd37</ipv6_default_gateway>
+            <dhcp>false</dhcp>
+            <mac>52:54:00:9C:30:73</mac>
+        </network_interface>
+    </network_interfaces>
+    <printers>
+        <printer>
+            <name>Microsoft XPS Document Writer</name>
+            <driver>Microsoft XPS Document Writer</driver>
+            <version></version>
+        </printer>
+        <printer>
+            <name>Microsoft XPS Document Writer</name>
+            <driver>Microsoft XPS Document Writer</driver>
+            <version></version>
+        </printer>
+    </printers>
+</composition>
