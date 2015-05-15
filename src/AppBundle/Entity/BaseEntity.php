@@ -26,23 +26,11 @@ class BaseEntity {
      */
     private $id;
 
-    /**
-     * Set id
-     *
-     * @param string $id
-     * @return BaseComponent
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
 
     /**
      * Get id
      *
-     * @return string 
+     * @return integer 
      */
     public function getId()
     {
