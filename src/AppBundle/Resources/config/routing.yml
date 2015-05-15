@@ -2,6 +2,6 @@ app_import:
     resource: "@AppBundle/Resources/config/routing/import.yml"
     prefix:   /import
 
-export:
-    path:     /export
-    defaults: { _controller: AppBundle:Export:export }
+app_scan_history:
+    resource: "@AppBundle/Resources/config/routing/scanhistory.yml"
+    prefix:   /scanhistory
