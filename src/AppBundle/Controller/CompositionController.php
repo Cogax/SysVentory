@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Util\HashGenerator;
 use AppBundle\Util\Serializer;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -10,18 +9,22 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class CompositionController extends Controller
 {
     private $_em;
+    private $compositionHistoryController;
     private $hashGenerator;
     private $serializer;
 
-    public function __construct(EntityManager $em, HashGenerator $hashGenerator, Serializer $serializer) {
+    public function __construct(EntityManager $em, CompositionHistoryController $compositionHistoryController, $hashGenerator, Serializer $serializer) {
         $this->_em = $em;
+        $this->compositionHistoryController = $compositionHistoryController;
         $this->hashGenerator = $hashGenerator;
         $this->serializer = $serializer;
     }
 
     public function store($xmlComposition) {
         $composition = $this->loadFromXML($xmlComposition);
-        // @todo compotitioncache entity
+
+        // Compositionhistory entry
+        $this->compositionHistoryController->create($composition);
     }
 
     private function loadFromXML($xml) {

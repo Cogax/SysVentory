@@ -22,13 +22,6 @@ class CompositionHistory
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="serialnumber", type="string", length=255)
-     */
-    private $serialnumber;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="time", type="datetime")
@@ -36,9 +29,11 @@ class CompositionHistory
     private $time;
 
     /**
-     * @ORM\OneToOne(targetEntity="Composition")
+     * @ORM\ManyToOne(targetEntity="Composition")
      */
     private $composition;
+
+
 
     /**
      * Get id
@@ -48,29 +43,6 @@ class CompositionHistory
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set serialnumber
-     *
-     * @param string $serialnumber
-     * @return CompositionHistory
-     */
-    public function setSerialnumber($serialnumber)
-    {
-        $this->serialnumber = $serialnumber;
-
-        return $this;
-    }
-
-    /**
-     * Get serialnumber
-     *
-     * @return string 
-     */
-    public function getSerialnumber()
-    {
-        return $this->serialnumber;
     }
 
     /**
