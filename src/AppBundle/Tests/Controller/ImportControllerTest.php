@@ -11,7 +11,7 @@ class ImportControllerTest extends WebTestCase {
         // Create a new client
         $client = static::createClient();
 
-        $xml = file_get_contents(getcwd().'/src/AppBundle/Tests/Resources/ImportControllerTestData.xml');
+        $xml = file_get_contents(static::$kernel->locateResource('@AppBundle/Tests/Resources/ImportControllerTestData.xml'));
         $client->request(
           'POST',
           '/import/',

@@ -20,32 +20,32 @@ class XsdValidatorTest extends KernelTestCase {
     }
 
     public function testInvalidMachine() {
-        $xml = file_get_contents(getcwd().'/src/AppBundle/Tests/Resources/XsdValidatorTestData_InvalidMachine.xml');
+        $xml = static::$kernel->locateResource('@AppBundle/Tests/Resources/XsdValidatorTestData_InvalidMachine.xml');
         $this->assertEquals(false, $this->validator->idValid($xml, $this->xsd));
     }
 
     public function testInvalidOperatingSystem() {
-        $xml = file_get_contents(getcwd().'/src/AppBundle/Tests/Resources/XsdValidatorTestData_InvalidOperatingSystem.xml');
+        $xml = static::$kernel->locateResource('@AppBundle/Tests/Resources/XsdValidatorTestData_InvalidOperatingSystem.xml');
         $this->assertEquals(false, $this->validator->idValid($xml, $this->xsd));
     }
 
     public function testInvalidSoftware() {
-        $xml = file_get_contents(getcwd().'/src/AppBundle/Tests/Resources/XsdValidatorTestData_InvalidSoftware.xml');
+        $xml = static::$kernel->locateResource('@AppBundle/Tests/Resources/XsdValidatorTestData_InvalidSoftware.xml');
         $this->assertEquals(false, $this->validator->idValid($xml, $this->xsd));
     }
 
     public function testInvalidCpu() {
-        $xml = file_get_contents(getcwd().'/src/AppBundle/Tests/Resources/XsdValidatorTestData_InvalidCpu.xml');
+        $xml = static::$kernel->locateResource('@AppBundle/Tests/Resources/XsdValidatorTestData_InvalidCpu.xml');
         $this->assertEquals(false, $this->validator->idValid($xml, $this->xsd));
     }
 
     public function testInvalidNetworkInterface() {
-        $xml = file_get_contents(getcwd().'/src/AppBundle/Tests/Resources/XsdValidatorTestData_InvalidNetworkInterface.xml');
+        $xml = static::$kernel->locateResource('@AppBundle/Tests/Resources/XsdValidatorTestData_InvalidNetworkInterface.xml');
         $this->assertEquals(false, $this->validator->idValid($xml, $this->xsd));
     }
 
     public function testInvalidPrinter() {
-        $xml = file_get_contents(getcwd().'/src/AppBundle/Tests/Resources/XsdValidatorTestData_InvalidPrinter.xml');
+        $xml = static::$kernel->locateResource('@AppBundle/Tests/Resources/XsdValidatorTestData_InvalidPrinter.xml');
         $this->assertEquals(false, $this->validator->idValid($xml, $this->xsd));
     }
 

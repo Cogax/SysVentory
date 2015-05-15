@@ -16,7 +16,7 @@ class SerializerTest extends KernelTestCase {
     public function setUp() {
         self::bootKernel();
         $serializer = static::$kernel->getContainer()->get("app.serializer");
-        $xml = file_get_contents(getcwd().'/src/AppBundle/Tests/Resources/SerializerTestData.xml');
+        $xml = file_get_contents(static::$kernel->locateResource('@AppBundle/Tests/Resources/SerializerTestData.xml'));
         $this->composition = $serializer->deserialize($xml, 'AppBundle\Entity\Composition', 'xml');
     }
 
