@@ -15,11 +15,10 @@ class CompositionHistoryController extends Controller
         $this->_em = $em;
     }
 
-    public function create(Composition $composition) {
-        $compositionHistory = new CompositionHistory();
-        $compositionHistory->setComposition($composition);
-        $compositionHistory->setTime(new \DateTime());
-        $this->_em->persist($compositionHistory);
-        $this->_em->flush();
+    public function createFromCompositionId($compositionId) {
+        $connection = $this->_em->getConnection();
+        $statement = $connection->prepare("INSERT INTO compositionhistory SET composition_id = :composition_id, time = NOW()");
+        $statement->bindValue('composition_id', $compositionId);
+        $statement->execute();
     }
 }

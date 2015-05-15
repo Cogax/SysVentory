@@ -13,18 +13,9 @@ use Doctrine\ORM\Mapping as ORM;
 class CompositionCache
 {
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
      * @var string
-     *
-     * @ORM\Column(name="hash", type="string", length=32)
+     * @ORM\Id
+     * @ORM\Column(name="hash", type="string", length=32, unique=true)
      */
     private $hash;
 
@@ -33,16 +24,6 @@ class CompositionCache
      * @ORM\OneToOne(targetEntity="Composition")
      */
     private $composition;
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set hash

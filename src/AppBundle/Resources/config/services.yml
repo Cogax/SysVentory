@@ -1,10 +1,14 @@
 services:
   app.composition_controller:
     class: AppBundle\Controller\CompositionController
-    arguments: [ @doctrine.orm.entity_manager, @app.composition_history_controller, @app.hash_generator, @app.serializer ]
+    arguments: [ @doctrine.orm.entity_manager, @app.composition_history_controller, @app.composition_cache_controller, @app.hash_generator, @app.serializer ]
 
   app.composition_history_controller:
     class: AppBundle\Controller\CompositionHistoryController
+    arguments: [ @doctrine.orm.entity_manager ]
+
+  app.composition_cache_controller:
+    class: AppBundle\Controller\CompositionCacheController
     arguments: [ @doctrine.orm.entity_manager ]
 
   app.xsd_validator:

@@ -22,12 +22,6 @@ class Composition
     private $id;
 
     /**
-     * @var string
-     * @ORM\Column(name="hash", type="string", length=32, unique=true)
-     */
-    private $hash;
-
-    /**
      * @ORM\ManyToMany(targetEntity="NetworkInterface", cascade={"persist"})
      * @JMS\Type("ArrayCollection<AppBundle\Entity\NetworkInterface>")
      * @JMS\XmlList(entry="network_interface")
@@ -64,7 +58,6 @@ class Composition
      * @JMS\XmlList(entry="printer")
      */
     private $printers;
-    
     /**
      * Constructor
      */
@@ -74,6 +67,16 @@ class Composition
         $this->cpus = new \Doctrine\Common\Collections\ArrayCollection();
         $this->softwares = new \Doctrine\Common\Collections\ArrayCollection();
         $this->printers = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -252,38 +255,5 @@ class Composition
     public function getPrinters()
     {
         return $this->printers;
-    }
-
-    /**
-     * Set hash
-     *
-     * @param string $hash
-     * @return Composition
-     */
-    public function setHash($hash)
-    {
-        $this->hash = $hash;
-
-        return $this;
-    }
-
-    /**
-     * Get hash
-     *
-     * @return string 
-     */
-    public function getHash()
-    {
-        return $this->hash;
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 }

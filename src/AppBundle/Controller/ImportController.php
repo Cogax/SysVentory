@@ -30,7 +30,6 @@ class ImportController extends Controller
         // store
         $this->get("app.composition_controller")->store($xml);
 
-
         return new Response("Success!");
     }
 }

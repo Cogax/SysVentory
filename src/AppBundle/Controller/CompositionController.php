@@ -10,33 +10,40 @@ class CompositionController extends Controller
 {
     private $_em;
     private $compositionHistoryController;
+    private $compositionCacheController;
     private $hashGenerator;
     private $serializer;
 
-    public function __construct(EntityManager $em, CompositionHistoryController $compositionHistoryController, $hashGenerator, Serializer $serializer) {
+    public function __construct(EntityManager $em, CompositionHistoryController $compositionHistoryController, CompositionCacheController $compositionCacheController, $hashGenerator, Serializer $serializer) {
         $this->_em = $em;
         $this->compositionHistoryController = $compositionHistoryController;
+        $this->compositionCacheController = $compositionCacheController;
         $this->hashGenerator = $hashGenerator;
         $this->serializer = $serializer;
     }
 
     public function store($xmlComposition) {
-        $composition = $this->loadFromXML($xmlComposition);
+        // get cached or new composition id
+        $composition_id = $this->getCompositionId($xmlComposition);
 
         // Compositionhistory entry
-        $this->compositionHistoryController->create($composition);
+        $this->compositionHistoryController->createFromCompositionId($composition_id);
+
     }
 
-    private function loadFromXML($xml) {
+    private function getCompositionId($xml) {
         $hash = $this->hashGenerator->getHash($xml);
-        $composition = $this->_em->getRepository('AppBundle:Composition')->findOneByHash($hash);
-        if(!$composition) {
-            // create composition entities
+
+        if(!$composition_id = $this->compositionCacheController->getCachedCompositionId($hash)) {
+            // no cache entry exists - create new composition and compositioncache entity
             $composition = $this->serializer->deserialize($xml, 'AppBundle\Entity\Composition', 'xml');
-            $composition->setHash($hash);
             $this->_em->persist($composition);
             $this->_em->flush();
+
+            $this->compositionCacheController->create($composition, $hash);
+            $composition_id = $composition->getId();
         }
-        return $composition;
+
+        return $composition_id;
     }
 }
