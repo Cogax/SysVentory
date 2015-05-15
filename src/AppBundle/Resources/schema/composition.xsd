@@ -13,25 +13,26 @@
         </xs:complexType>
     </xs:element>
 
+    <!-- referencing elements -->
     <xs:element name="machine">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="manufracturer" type="xs:string"></xs:element>
-                <xs:element name="model" type="xs:string"></xs:element>
-                <xs:element name="serial_number" type="xs:string"></xs:element>
-                <xs:element name="memory" type="xs:int"></xs:element>
-                <xs:element name="computer_name" type="xs:string"></xs:element>
-                <xs:element name="uuid" type="xs:string"></xs:element>
+                <xs:element name="manufracturer" type="dbString" minOccurs="0"></xs:element>
+                <xs:element name="model" type="dbString" minOccurs="0"></xs:element>
+                <xs:element name="serial_number" type="dbString"></xs:element>
+                <xs:element name="memory" type="xs:nonNegativeInteger" minOccurs="0"></xs:element>
+                <xs:element name="computer_name" type="dbString" minOccurs="0"></xs:element>
+                <xs:element name="uuid" type="dbString"></xs:element>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
     <xs:element name="operating_system">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="name" type="xs:string"></xs:element>
-                <xs:element name="version" type="xs:string"></xs:element>
-                <xs:element name="service_pack" type="xs:int"></xs:element>
-                <xs:element name="architecture" type="xs:string"></xs:element>
+                <xs:element name="name" type="dbString"></xs:element>
+                <xs:element name="version" type="dbString"></xs:element>
+                <xs:element name="service_pack" type="xs:nonNegativeInteger" minOccurs="0"></xs:element>
+                <xs:element name="architecture" type="dbString"></xs:element>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -41,8 +42,8 @@
                 <xs:element name="software" maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="name" type="xs:string"></xs:element>
-                            <xs:element name="version" type="xs:string"></xs:element>
+                            <xs:element name="name" type="dbString"></xs:element>
+                            <xs:element name="version" type="dbString"></xs:element>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
@@ -55,10 +56,10 @@
                 <xs:element name="cpu" maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="name" type="xs:string"></xs:element>
-                            <xs:element name="family" type="xs:string"></xs:element>
-                            <xs:element name="clock" type="xs:int"></xs:element>
-                            <xs:element name="cores" type="xs:int"></xs:element>
+                            <xs:element name="name" type="dbString"></xs:element>
+                            <xs:element name="family" type="dbString" minOccurs="0"></xs:element>
+                            <xs:element name="clock" type="xs:nonNegativeInteger" minOccurs="0"></xs:element>
+                            <xs:element name="cores" type="xs:nonNegativeInteger" minOccurs="0"></xs:element>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
@@ -71,15 +72,15 @@
                 <xs:element name="network_interface" maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="description" type="xs:string"></xs:element>
-                            <xs:element name="ipv4" type="xs:string"></xs:element>
-                            <xs:element name="ipv4_subnet" type="xs:string"></xs:element>
-                            <xs:element name="ipv4_default_gateway" type="xs:string"></xs:element>
-                            <xs:element name="ipv6" type="xs:string"></xs:element>
-                            <xs:element name="ipv6_subnet" type="xs:int"></xs:element>
-                            <xs:element name="ipv6_default_gateway" type="xs:string"></xs:element>
-                            <xs:element name="dhcp" type="xs:boolean"></xs:element>
-                            <xs:element name="mac" type="xs:string"></xs:element>
+                            <xs:element name="description" type="dbString" minOccurs="0"></xs:element>
+                            <xs:element name="ipv4" type="dbString"></xs:element>
+                            <xs:element name="ipv4_subnet" type="dbString" minOccurs="0"></xs:element>
+                            <xs:element name="ipv4_default_gateway" type="dbString" minOccurs="0"></xs:element>
+                            <xs:element name="ipv6" type="dbString" minOccurs="0"></xs:element>
+                            <xs:element name="ipv6_subnet" type="xs:nonNegativeInteger" minOccurs="0"></xs:element>
+                            <xs:element name="ipv6_default_gateway" type="dbString" minOccurs="0"></xs:element>
+                            <xs:element name="dhcp" type="xs:boolean" minOccurs="0"></xs:element>
+                            <xs:element name="mac" type="dbString"></xs:element>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
@@ -92,13 +93,20 @@
                 <xs:element name="printer" maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="name" type="xs:string"></xs:element>
-                            <xs:element name="driver" type="xs:string"></xs:element>
-                            <xs:element name="version" type="xs:string"></xs:element>
+                            <xs:element name="name" type="dbString"></xs:element>
+                            <xs:element name="driver" type="dbString"></xs:element>
+                            <xs:element name="version" type="dbString" minOccurs="0"></xs:element>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+
+    <!-- referencing types -->
+    <xs:simpleType name="dbString">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="255"></xs:maxLength>
+        </xs:restriction>
+    </xs:simpleType>
 </xs:schema>
