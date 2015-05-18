@@ -11,6 +11,10 @@ services:
     class: AppBundle\Controller\CompositionCacheController
     arguments: [ @doctrine.orm.entity_manager ]
 
+  app.network_controller:
+    class: AppBundle\Controller\NetworkController
+    arguments: [ @doctrine.orm.entity_manager ]
+
   app.xsd_validator:
     class: AppBundle\Util\XsdValidator
 
@@ -20,3 +24,6 @@ services:
   app.serializer:
     class: AppBundle\Util\Serializer
     arguments: [ @jms_serializer ]
+
+  app.collector:
+    class: AppBundle\Util\Collector

@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Composition;
 use AppBundle\Entity\CompositionCache;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -30,10 +29,7 @@ class CompositionCacheController extends Controller
         $statement->execute();
         $results = $statement->fetchAll();
         if(count($results) == 1) {
-            echo 'composition in cache<br>';
             return $results[0]['composition_id'];
-        } else {
-            echo 'composition not in cache<br>';
         }
         return false;
     }

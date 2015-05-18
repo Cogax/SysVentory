@@ -1,0 +1,3 @@
+scan_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Scan:new" }

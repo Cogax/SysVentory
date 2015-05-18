@@ -3,12 +3,16 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Network
  *
  * @ORM\Table(name="network")
  * @ORM\Entity
+ * @UniqueEntity(fields={"name"}, message="Sorry, this name is already in use.")
+ * @UniqueEntity(fields={"netRange"}, message="Sorry, this range is already in use.")
  */
 class Network
 {
@@ -24,14 +28,14 @@ class Network
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="netRange", type="string", length=255)
+     * @ORM\Column(name="netRange", type="string", length=255, unique=true)
      */
     private $netRange;
 
