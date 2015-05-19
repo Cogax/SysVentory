@@ -20,18 +20,6 @@ class CompositionCacheService {
     }
 
     /**
-     * @param \AppBundle\Entity\Composition $composition
-     * @param string $hash
-     */
-    public function create(Composition $composition, $hash) {
-        $compositionCache = new CompositionCache();
-        $compositionCache->setComposition($composition);
-        $compositionCache->setHash($hash);
-        $this->_em->persist($compositionCache);
-        $this->_em->flush();
-    }
-
-    /**
      * @param string $hash
      * @return bool
      * @throws \Doctrine\DBAL\DBALException

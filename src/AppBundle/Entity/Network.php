@@ -40,6 +40,15 @@ class Network
     private $netRange;
 
     /**
+     * @param string $name
+     * @param string $netRange
+     */
+    public function __construct($name, $netRange) {
+        $this->name = $name;
+        $this->netRange = $netRange;
+    }
+
+    /**
      * Get id
      *
      * @return integer 

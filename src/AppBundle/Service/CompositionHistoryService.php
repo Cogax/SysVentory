@@ -1,13 +1,11 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace AppBundle\Service;
 
-use AppBundle\Entity\Composition;
-use AppBundle\Entity\CompositionHistory;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class CompositionHistoryController extends Controller
+class CompositionHistoryService extends Controller
 {
     private $_em;
 

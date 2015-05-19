@@ -26,6 +26,15 @@ class CompositionCache
     private $composition;
 
     /**
+     * @param string $hash
+     * @param \AppBundle\Entity\Composition $composition
+     */
+    public function __construct($hash, Composition $composition) {
+        $this->hash = $hash;
+        $this->composition = $composition;
+    }
+
+    /**
      * Set hash
      *
      * @param string $hash

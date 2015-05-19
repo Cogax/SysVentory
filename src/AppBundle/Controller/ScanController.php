@@ -25,9 +25,7 @@ class ScanController extends Controller {
                 // Create a network entity if it will be stored, elsewhere run
                 // scan now.
                 if($scan->isStore()) {
-                    $network = new Network();
-                    $network->setNetRange($scan->getRange());
-                    $network->setName($scan->getName());
+                    $network = new Network($scan->getName(), $scan->getRange());
 
                     $validator = $this->get("validator");
                     $errors = $validator->validate($network);

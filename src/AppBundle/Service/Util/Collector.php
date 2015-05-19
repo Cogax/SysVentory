@@ -1,5 +1,5 @@
 <?php
-namespace AppBundle\Util;
+namespace AppBundle\Service\Util;
 
 
 use AppBundle\Form\Model\Scan;

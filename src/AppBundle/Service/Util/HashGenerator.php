@@ -1,6 +1,5 @@
 <?php
-
-namespace AppBundle\Util;
+namespace AppBundle\Service\Util;
 
 
 class HashGenerator {

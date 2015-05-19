@@ -1,29 +1,25 @@
 services:
   app.composition_controller:
-    class: AppBundle\Controller\CompositionController
-    arguments: [ @doctrine.orm.entity_manager, @app.composition_history_controller, @app.composition_cache, @app.hash_generator, @app.serializer ]
+    class: AppBundle\Service\CompositionService
+    arguments: [ @doctrine.orm.entity_manager, @app.composition_history, @app.composition_cache, @app.hash_generator, @app.serializer ]
 
-  app.composition_history_controller:
-    class: AppBundle\Controller\CompositionHistoryController
+  app.composition_history:
+    class: AppBundle\Service\CompositionHistoryService
     arguments: [ @doctrine.orm.entity_manager ]
 
   app.composition_cache:
     class: AppBundle\Service\CompositionCacheService
     arguments: [ @doctrine.orm.entity_manager ]
 
-  app.network_controller:
-    class: AppBundle\Controller\NetworkController
-    arguments: [ @doctrine.orm.entity_manager ]
-
   app.xsd_validator:
-    class: AppBundle\Util\XsdValidator
+    class: AppBundle\Service\Util\XsdValidator
 
   app.hash_generator:
-    class: AppBundle\Util\HashGenerator
+    class: AppBundle\Service\Util\HashGenerator
 
   app.serializer:
-    class: AppBundle\Util\Serializer
+    class: AppBundle\Service\Util\Serializer
     arguments: [ @jms_serializer ]
 
   app.collector:
-    class: AppBundle\Util\Collector
+    class: AppBundle\Service\Util\Collector
