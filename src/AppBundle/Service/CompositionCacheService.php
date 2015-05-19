@@ -1,20 +1,29 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace AppBundle\Service;
 
+use AppBundle\Entity\Composition;
 use AppBundle\Entity\CompositionCache;
 use Doctrine\ORM\EntityManager;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class CompositionCacheController extends Controller
-{
+class CompositionCacheService {
+    /**
+     * @var \Doctrine\ORM\EntityManager
+     */
     private $_em;
 
+    /**
+     * @param \Doctrine\ORM\EntityManager $em
+     */
     public function __construct(EntityManager $em) {
         $this->_em = $em;
     }
 
-    public function create($composition, $hash) {
+    /**
+     * @param \AppBundle\Entity\Composition $composition
+     * @param string $hash
+     */
+    public function create(Composition $composition, $hash) {
         $compositionCache = new CompositionCache();
         $compositionCache->setComposition($composition);
         $compositionCache->setHash($hash);
@@ -22,6 +31,11 @@ class CompositionCacheController extends Controller
         $this->_em->flush();
     }
 
+    /**
+     * @param string $hash
+     * @return bool
+     * @throws \Doctrine\DBAL\DBALException
+     */
     public function getCachedCompositionId($hash) {
         $connection = $this->_em->getConnection();
         $statement = $connection->prepare("SELECT composition_id FROM compositioncache WHERE hash = :hash");
