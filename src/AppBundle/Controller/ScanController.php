@@ -11,6 +11,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ScanController extends Controller {
 
+    /**
+     * Make a new scan.
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function newAction() {
         $scan = new Scan();
         $form = $this->createForm(new ScanType(), $scan);

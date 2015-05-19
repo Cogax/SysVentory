@@ -10,20 +10,32 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class CompositionService extends Controller
 {
-    private $_em;
+    private $entityManager;
     private $compositionHistoryService;
     private $compositionCacheService;
     private $hashGenerator;
     private $serializer;
 
-    public function __construct(EntityManager $em, CompositionHistoryService $compositionHistoryService, CompositionCacheService $compositionCacheService, HashGenerator $hashGenerator, Serializer $serializer) {
-        $this->_em = $em;
+    /**
+     * @param \Doctrine\ORM\EntityManager $entityManager
+     * @param \AppBundle\Service\CompositionHistoryService $compositionHistoryService
+     * @param \AppBundle\Service\CompositionCacheService $compositionCacheService
+     * @param \AppBundle\Service\Util\HashGenerator $hashGenerator
+     * @param \AppBundle\Service\Util\Serializer $serializer
+     */
+    public function __construct(EntityManager $entityManager, CompositionHistoryService $compositionHistoryService, CompositionCacheService $compositionCacheService, HashGenerator $hashGenerator, Serializer $serializer) {
+        $this->entityManager = $entityManager;
         $this->compositionHistoryService = $compositionHistoryService;
         $this->compositionCacheService = $compositionCacheService;
         $this->hashGenerator = $hashGenerator;
         $this->serializer = $serializer;
     }
 
+    /**
+     *
+     *
+     * @param $xmlComposition
+     */
     public function storeFromXML($xmlComposition) {
         // get cached or new composition id
         $composition_id = $this->getCompositionId($xmlComposition);
@@ -33,21 +45,39 @@ class CompositionService extends Controller
 
     }
 
+    /**
+     * Returns the compositionId of a composition delivered by xml. This method
+     * takes care of cached compositions and will otherwise create a new
+     * composition directly from xml.
+     *
+     * @param string $xml
+     * @return integer
+     */
     private function getCompositionId($xml) {
         $hash = $this->hashGenerator->getHash($xml);
 
         if(!$composition_id = $this->compositionCacheService->getCachedCompositionId($hash)) {
-            // no cache entry exists - create new composition and compositioncache entity
-            $composition = $this->serializer->deserialize($xml, 'AppBundle\Entity\Composition', 'xml');
+            $composition = $this->createCompositionFromXML($xml);
             $compositionCache = new CompositionCache($hash, $composition);
 
-            $this->_em->persist($composition);
-            $this->_em->persist($compositionCache);
-            $this->_em->flush();
+            $this->entityManager->persist($composition);
+            $this->entityManager->persist($compositionCache);
+            $this->entityManager->flush();
 
             $composition_id = $composition->getId();
         }
 
         return $composition_id;
+    }
+
+    /**
+     * Creates an composition entity from an XML string input. Interacts with
+     * the serializer.
+     *
+     * @param string $xml
+     * @return \AppBundle\Entity\Composition
+     */
+    private function createCompositionFromXML($xml) {
+        return $composition = $this->serializer->deserialize($xml, 'AppBundle\Entity\Composition', 'xml');
     }
 }

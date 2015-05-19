@@ -8,28 +8,33 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ImportController extends Controller
 {
+    /**
+     * API for data import.
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function importAction(Request $request) {
 
-        // check request method
+        // Check request http method
         if($request->getMethod() != 'POST') {
             return new Response('Invalid method!', Response::HTTP_METHOD_NOT_ALLOWED);
         }
 
-        // check content type http header
+        // Check request http header "Content-Type"
         if($request->getContentType() != 'xml') {
             return new Response('Invalid content-type: '.$request->getContentType(), Response::HTTP_UNSUPPORTED_MEDIA_TYPE);
         }
 
-        // ceck if xml is valid
+        // Check if XML is valid
         $xml = $request->getContent();
         $xsdFilename = $this->get('kernel')->locateResource("@AppBundle/Resources/schema/composition.xsd");
         if(!$this->get("app.xsd_validator")->idValid($xml, $xsdFilename)) {
             return new Response('XML is not valid!', Response::HTTP_BAD_REQUEST);
         }
 
-        // store
+        // Store Composition
         $this->get("app.composition_controller")->storeFromXML($xml);
-
         return new Response("Success!");
     }
 }

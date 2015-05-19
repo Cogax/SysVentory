@@ -10,22 +10,25 @@ class CompositionCacheService {
     /**
      * @var \Doctrine\ORM\EntityManager
      */
-    private $_em;
+    private $entityManager;
 
     /**
-     * @param \Doctrine\ORM\EntityManager $em
+     * @param \Doctrine\ORM\EntityManager $entityManager
      */
-    public function __construct(EntityManager $em) {
-        $this->_em = $em;
+    public function __construct(EntityManager $entityManager) {
+        $this->entityManager = $entityManager;
     }
 
     /**
+     * Return the compositionId of a composition which is cached. Otherwise it
+     * will return false.
+     *
      * @param string $hash
      * @return bool
      * @throws \Doctrine\DBAL\DBALException
      */
     public function getCachedCompositionId($hash) {
-        $connection = $this->_em->getConnection();
+        $connection = $this->entityManager->getConnection();
         $statement = $connection->prepare("SELECT composition_id FROM compositioncache WHERE hash = :hash");
         $statement->bindValue('hash', $hash);
         $statement->execute();
