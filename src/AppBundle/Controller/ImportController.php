@@ -28,7 +28,7 @@ class ImportController extends Controller
         }
 
         // store
-        $this->get("app.composition_controller")->store($xml);
+        $this->get("app.composition_controller")->storeFromXML($xml);
 
         return new Response("Success!");
     }

@@ -3,7 +3,6 @@
 namespace AppBundle\Service;
 
 use AppBundle\Entity\CompositionCache;
-use AppBundle\Entity\CompositionHistory;
 use AppBundle\Service\Util\HashGenerator;
 use AppBundle\Service\Util\Serializer;
 use Doctrine\ORM\EntityManager;
@@ -25,7 +24,7 @@ class CompositionService extends Controller
         $this->serializer = $serializer;
     }
 
-    public function store($xmlComposition) {
+    public function storeFromXML($xmlComposition) {
         // get cached or new composition id
         $composition_id = $this->getCompositionId($xmlComposition);
 
