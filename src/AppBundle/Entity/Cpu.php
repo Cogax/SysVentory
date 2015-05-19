@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Cpu
@@ -63,7 +64,7 @@ class Cpu
      */
     public function setName($name)
     {
-        $this->name = $name;
+        $this->name = $name.'xxtest';
 
         return $this;
     }

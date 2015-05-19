@@ -23,3 +23,8 @@ services:
 
   app.collector:
     class: AppBundle\Service\Util\Collector
+
+  app.doctrine_listener:
+    class: AppBundle\EventListener\UniqueComponent
+    tags:
+      - { name: doctrine.event_listener, event: prePersist }
