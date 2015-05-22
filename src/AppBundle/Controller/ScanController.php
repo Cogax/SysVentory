@@ -46,12 +46,12 @@ class ScanController extends Controller {
                     $em = $this->getDoctrine()->getManager();
                     $em->persist($network);
                     $em->flush();
-
-                    return new Response("stored", Response::HTTP_CREATED);
-
-                    // todo scan will run on next automatically scan
+                }
+                if($this->get('kernel')->getEnvironment() != 'test') {
+                    //do something here
+                    $this->get("app.collector")->scan($scan->getRange());
                 } else {
-                    $this->get("app.collector")->scan($scan);
+                    return new Response("stored!", 201);
                 }
             }
         }

@@ -15,11 +15,10 @@ class Scan {
      * @var boolean
      * @Assert\NotNull()
      */
-    protected $store;
+    protected $store = false;
 
     /**
      * @var string
-     * @Assert\NotBlank()
      */
     protected $name;
 
