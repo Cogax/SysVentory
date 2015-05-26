@@ -28,6 +28,10 @@ class ImportController extends Controller
             return new Response($request->getContent(), Response::HTTP_UNSUPPORTED_MEDIA_TYPE);
         }
 
+        if($request->getContent() == '') {
+            return new Response($request->getContent(), Response::HTTP_I_AM_A_TEAPOT);
+        }
+
         // Check if XML is valid
         $xml = $request->getContent();
         $xsdFilename = $this->get('kernel')->locateResource("@AppBundle/Resources/schema/composition.xsd");
