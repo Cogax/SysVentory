@@ -24,9 +24,9 @@ class Machine
     /**
      * @var string
      *
-     * @ORM\Column(name="manufracturer", type="string", length=255, nullable=true)
+     * @ORM\Column(name="manufacturer", type="string", length=255, nullable=true)
      */
-    private $manufracturer = null;
+    private $manufacturer = null;
 
     /**
      * @var string
@@ -74,26 +74,26 @@ class Machine
     }
 
     /**
-     * Set manufracturer
+     * Set manufacturer
      *
-     * @param string $manufracturer
+     * @param string $manufacturer
      * @return Machine
      */
-    public function setManufracturer($manufracturer)
+    public function setManufacturer($manufacturer)
     {
-        $this->manufracturer = $manufracturer;
+        $this->manufacturer = $manufacturer;
 
         return $this;
     }
 
     /**
-     * Get manufracturer
+     * Get manufacturer
      *
      * @return string 
      */
-    public function getManufracturer()
+    public function getManufacturer()
     {
-        return $this->manufracturer;
+        return $this->manufacturer;
     }
 
     /**

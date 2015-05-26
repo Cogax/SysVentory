@@ -22,7 +22,7 @@ class SerializerTest extends KernelTestCase {
 
     public function testMachine() {
         $machine = $this->composition->getMachine();
-        $this->assertEquals('Bochs', $machine->getManufracturer());
+        $this->assertEquals('Bochs', $machine->getManufacturer());
         $this->assertEquals('Bochs', $machine->getModel());
         $this->assertEquals('', $machine->getSerialNumber());
         $this->assertEquals(2147069952, $machine->getMemory());

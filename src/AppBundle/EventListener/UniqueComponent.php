@@ -55,7 +55,7 @@ class UniqueComponent {
         // Handle Machine
         $machine = $entity->getMachine();
         $results = $entityManager->getRepository("AppBundle:Machine")->findBy(array(
-          'manufracturer' => $machine->getManufracturer(),
+          'manufacturer' => $machine->getManufacturer(),
           'model' => $machine->getModel(),
           'memory' => $machine->getMemory(),
           'computerName' => $machine->getComputerName(),

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <composition>
     <machine>
-        <manufracturer>Bochs</manufracturer>
+        <manufacturer>Bochs</manufacturer>
         <model>Bochs</model>
         <serial_number></serial_number>
         <memory>2147069952</memory>

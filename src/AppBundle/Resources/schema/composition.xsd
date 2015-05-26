@@ -17,7 +17,7 @@
     <xs:element name="machine">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="manufracturer" type="dbString" minOccurs="0"></xs:element>
+                <xs:element name="manufacturer" type="dbString" minOccurs="0"></xs:element>
                 <xs:element name="model" type="dbString" minOccurs="0"></xs:element>
                 <xs:element name="serial_number" type="dbString"></xs:element>
                 <xs:element name="memory" type="xs:nonNegativeInteger" minOccurs="0"></xs:element>
