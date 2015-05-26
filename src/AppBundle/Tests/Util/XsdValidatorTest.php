@@ -21,32 +21,32 @@ class XsdValidatorTest extends KernelTestCase {
 
     public function testInvalidMachine() {
         $xml = static::$kernel->locateResource('@AppBundle/Tests/Resources/XsdValidatorTestData_InvalidMachine.xml');
-        $this->assertEquals(false, $this->validator->idValid($xml, $this->xsd));
+        $this->assertEquals(false, $this->validator->isValid($xml, $this->xsd));
     }
 
     public function testInvalidOperatingSystem() {
         $xml = static::$kernel->locateResource('@AppBundle/Tests/Resources/XsdValidatorTestData_InvalidOperatingSystem.xml');
-        $this->assertEquals(false, $this->validator->idValid($xml, $this->xsd));
+        $this->assertEquals(false, $this->validator->isValid($xml, $this->xsd));
     }
 
     public function testInvalidSoftware() {
         $xml = static::$kernel->locateResource('@AppBundle/Tests/Resources/XsdValidatorTestData_InvalidSoftware.xml');
-        $this->assertEquals(false, $this->validator->idValid($xml, $this->xsd));
+        $this->assertEquals(false, $this->validator->isValid($xml, $this->xsd));
     }
 
     public function testInvalidCpu() {
         $xml = static::$kernel->locateResource('@AppBundle/Tests/Resources/XsdValidatorTestData_InvalidCpu.xml');
-        $this->assertEquals(false, $this->validator->idValid($xml, $this->xsd));
+        $this->assertEquals(false, $this->validator->isValid($xml, $this->xsd));
     }
 
     public function testInvalidNetworkInterface() {
         $xml = static::$kernel->locateResource('@AppBundle/Tests/Resources/XsdValidatorTestData_InvalidNetworkInterface.xml');
-        $this->assertEquals(false, $this->validator->idValid($xml, $this->xsd));
+        $this->assertEquals(false, $this->validator->isValid($xml, $this->xsd));
     }
 
     public function testInvalidPrinter() {
         $xml = static::$kernel->locateResource('@AppBundle/Tests/Resources/XsdValidatorTestData_InvalidPrinter.xml');
-        $this->assertEquals(false, $this->validator->idValid($xml, $this->xsd));
+        $this->assertEquals(false, $this->validator->isValid($xml, $this->xsd));
     }
 
 }
