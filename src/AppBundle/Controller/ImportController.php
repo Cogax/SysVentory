@@ -35,7 +35,7 @@ class ImportController extends Controller
         // Check if XML is valid
         $xml = $request->getContent();
         $xsdFilename = $this->get('kernel')->locateResource("@AppBundle/Resources/schema/composition.xsd");
-        if(!$this->get("app.xsd_validator")->idValid($xml, $xsdFilename)) {
+        if(!$this->get("app.xsd_validator")->isValid($xml, $xsdFilename)) {
             //return new Response('XML is not valid!', Response::HTTP_BAD_REQUEST);
             return new Response($request->getContent(), Response::HTTP_BAD_REQUEST);
         }

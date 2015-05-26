@@ -3,7 +3,7 @@ namespace AppBundle\Service\Util;
 
 
 class XsdValidator {
-    public function idValid($xml, $xsdFilename) {
+    public function isValid($xml, $xsdFilename) {
         try {
             $dom = new \DOMDocument();
             if(!$dom->loadXML($xml)) {
