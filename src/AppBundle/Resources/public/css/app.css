@@ -1,0 +1,16 @@
+html {
+    height: 100%;
+    background: -webkit-linear-gradient(90deg, #00c6ff 10%, #0072ff 90%); /* Chrome 10+, Saf5.1+ */
+    background:    -moz-linear-gradient(90deg, #00c6ff 10%, #0072ff 90%); /* FF3.6+ */
+    background:     -ms-linear-gradient(90deg, #00c6ff 10%, #0072ff 90%); /* IE10 */
+    background:      -o-linear-gradient(90deg, #00c6ff 10%, #0072ff 90%); /* Opera 11.10+ */
+    background:         linear-gradient(90deg, #00c6ff 10%, #0072ff 90%); /* W3C */
+}
+
+body {
+    padding-top: 65px;
+}
+
+.content {
+    background-color: white;
+}
