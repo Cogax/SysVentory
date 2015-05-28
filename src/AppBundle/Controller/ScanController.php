@@ -61,4 +61,14 @@ class ScanController extends Controller {
           'form'   => $form->createView(),
         ));
     }
+
+    /**
+     * Scan all stored networks.
+     */
+    public function scanStoredNetworksAction() {
+        $networks = $this->getDoctrine()->getManager()->getRepository("AppBundle:Network")->findAll();
+        foreach($networks as $network) {
+            $this->get("app.collector")->scan($network->getNetRange());
+        }
+    }
 }

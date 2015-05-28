@@ -11,7 +11,7 @@ class Collector {
      */
     public function scan($netRange) {
         $cmd = printf('/srv/script/discovery.sh %s %s %s %s', $netRange, self::USERNAME, self::PASSWORD, self::HOST);
-        $return = shell_exec($cmd);
+        $return = exec($cmd);
         die($return);
     }
 }

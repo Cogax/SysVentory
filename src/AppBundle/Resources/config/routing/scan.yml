@@ -1,3 +1,7 @@
 scan_new:
     path:     /new
     defaults: { _controller: "AppBundle:Scan:new" }
+
+scan_stored_networks:
+    path:     /stored-networks
+    defaults: { _controller: "AppBundle:Scan:scanStoredNetworks" }
