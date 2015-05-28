@@ -41,7 +41,10 @@ class ImportController extends Controller
         }
 
         // Store Composition
-        $this->get("app.composition_controller")->storeFromXML($xml);
+        if(!$this->get("app.composition_controller")->storeFromXML($xml)) {
+            //return new Response('XML could not be converted into an object!', Response::HTTP_BAD_REQUEST);
+            return new Response($request->getContent(), Response::HTTP_BAD_REQUEST);
+        }
         return new Response("Success!");
     }
 }

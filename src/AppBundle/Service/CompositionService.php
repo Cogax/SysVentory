@@ -35,14 +35,20 @@ class CompositionService extends Controller
      *
      *
      * @param $xmlComposition
+     * @return bool
      */
     public function storeFromXML($xmlComposition) {
         // get cached or new composition id
-        $composition_id = $this->getCompositionId($xmlComposition);
+        try {
+            $composition_id = $this->getCompositionId($xmlComposition);
+        } catch(\Exception $e) {
+            return false;
+        }
 
         // Compositionhistory entry
         $this->compositionHistoryService->createFromCompositionId($composition_id);
 
+        return true;
     }
 
     /**
@@ -78,6 +84,6 @@ class CompositionService extends Controller
      * @return \AppBundle\Entity\Composition
      */
     private function createCompositionFromXML($xml) {
-        return $composition = $this->serializer->deserialize($xml, 'AppBundle\Entity\Composition', 'xml');
+        return $this->serializer->deserialize($xml, 'AppBundle\Entity\Composition', 'xml');
     }
 }
