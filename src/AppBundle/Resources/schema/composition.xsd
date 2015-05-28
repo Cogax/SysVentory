@@ -79,7 +79,14 @@
                             <xs:element name="ipv6" type="dbString" minOccurs="0"></xs:element>
                             <xs:element name="ipv6_subnet" type="xs:nonNegativeInteger" minOccurs="0"></xs:element>
                             <xs:element name="ipv6_default_gateway" type="dbString" minOccurs="0"></xs:element>
-                            <xs:element name="dhcp" type="xs:boolean" minOccurs="0"></xs:element>
+                            <xs:element name="dhcp" minOccurs="0">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="true"/>
+                                        <xs:enumeration value="false"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                             <xs:element name="mac" type="dbString"></xs:element>
                         </xs:sequence>
                     </xs:complexType>
