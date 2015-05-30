@@ -4,7 +4,7 @@ namespace AppBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class NetworkControllerTest extends WebTestCase
+abstract class NetworkControllerTest extends WebTestCase
 {
     /*
     public function testCompleteScenario()

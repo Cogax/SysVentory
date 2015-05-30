@@ -4,7 +4,7 @@ namespace AppBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class ScanHistoryControllerTest extends WebTestCase
+abstract class ScanHistoryControllerTest extends WebTestCase
 {
     /*
     public function testCompleteScenario()
