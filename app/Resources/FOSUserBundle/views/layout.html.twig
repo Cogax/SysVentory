@@ -1,3 +1,4 @@
+{% trans_default_domain 'FOSUserBundle' %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,12 +37,40 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="./">Login / Logout <span class="sr-only">(current)</span></a></li>
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <li class="active">
+                        <a href="{{ path('fos_user_profile_show') }}">
+                            {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('fos_user_security_logout') }}">
+                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="active">
+                        <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>
 </nav>
-{% block body %}{% endblock %}
+<body>
+    {% for type, messages in app.session.flashBag.all %}
+        {% for message in messages %}
+            <div class="{{ type }}">
+                {{ message|trans({}, 'FOSUserBundle') }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    <div>
+        {% block fos_user_content %}
+        {% endblock fos_user_content %}
+    </div>
+</body>
 {% block javascripts %}
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
