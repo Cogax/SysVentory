@@ -1,3 +1,6 @@
+/*
+//-- Document --//
+*/
 html, body {
     height: 100%;
     background: -webkit-linear-gradient(90deg, #00c6ff 10%, #0072ff 90%); /* Chrome 10+, Saf5.1+ */
@@ -6,16 +9,36 @@ html, body {
     background:      -o-linear-gradient(90deg, #00c6ff 10%, #0072ff 90%); /* Opera 11.10+ */
     background:         linear-gradient(90deg, #00c6ff 10%, #0072ff 90%); /* W3C */
 }
-
 body {
     padding-top: 65px;
 }
 
+
+/*
+//-- Typography --//
+*/
+h1 {
+    margin-bottom: 40px;
+}
+h1.title {
+    color: white;
+    font-weight: bold;
+    font-size: 55px;
+}
+
+
+/*
+//-- Content --//
+*/
 .content {
     background-color: white;
     margin-top: 50px;
 }
 
-h1 {
-    margin-bottom: 40px;
+
+/*
+//-- Misc. --//
+*/
+.centered {
+    text-align: center;
 }
