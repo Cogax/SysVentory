@@ -1,11 +1,12 @@
+{% form_theme form 'AppBundle:Form:bootstrap_3_horizontal_layout.html.twig' %}
 {% extends 'AppBundle::base.html.twig' %}
 
-{% block body -%}
+{% block body %}
 <div class="container">
     <div class="row">
-        <div class="col-md-4 col-md-offset-4 content">
+        <div class="col-md-4 col-md-offset-4 content scan-new">
 
-            <h1>Scan creation</h1>
+            <h1>Scan erfassen</h1>
 
             {% if errors is defined %}
                 <h3>The author has the following errors</h3>
@@ -21,4 +22,26 @@
         </div>
     </div>
 </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(function() {
+            //-- Variables --
+            var $networkNameInput = $("input#appbundle_scan_name");
+            var $networkNameFormGroup = $networkNameInput.closest(".form-group");
+            var $storeNetworkInput = $("input#appbundle_scan_store");
+
+            //-- Default behavoirs --
+            $networkNameFormGroup.hide();
+
+            //-- Event listeners --
+            $storeNetworkInput.click(function(event) {
+                $networkNameFormGroup.toggle();
+                $(this).prop('checked') ?
+                        $networkNameInput.attr('required', 'required') :
+                        $networkNameInput.removeAttr('required');
+            });
+        });
+    </script>
 {% endblock %}
