@@ -1,0 +1,30 @@
+network:
+    path:     /
+    defaults: { _controller: "AppBundle:Network:index" }
+
+network_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Network:show" }
+
+network_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Network:new" }
+
+network_create:
+    path:     /create
+    defaults: { _controller: "AppBundle:Network:create" }
+    methods:  POST
+
+network_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Network:edit" }
+
+network_update:
+    path:     /{id}/update
+    defaults: { _controller: "AppBundle:Network:update" }
+    methods:  [POST, PUT]
+
+network_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Network:delete" }
+    methods:  [POST, DELETE]
