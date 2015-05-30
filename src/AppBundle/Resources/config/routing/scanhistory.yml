@@ -6,15 +6,6 @@ scanhistory_show:
     path:     /{id}/show
     defaults: { _controller: "AppBundle:ScanHistory:show" }
 
-scanhistory_new:
-    path:     /new
-    defaults: { _controller: "AppBundle:ScanHistory:new" }
-
-scanhistory_create:
-    path:     /create
-    defaults: { _controller: "AppBundle:ScanHistory:create" }
-    methods:  POST
-
 scanhistory_edit:
     path:     /{id}/edit
     defaults: { _controller: "AppBundle:ScanHistory:edit" }

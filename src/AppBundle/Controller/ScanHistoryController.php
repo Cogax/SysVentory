@@ -29,63 +29,6 @@ class ScanHistoryController extends Controller
             'entities' => $entities,
         ));
     }
-    /**
-     * Creates a new ScanHistory entity.
-     *
-     */
-    public function createAction(Request $request)
-    {
-        $entity = new ScanHistory();
-        $form = $this->createCreateForm($entity);
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('scanhistory_show', array('id' => $entity->getId())));
-        }
-
-        return $this->render('AppBundle:ScanHistory:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
-    }
-
-    /**
-     * Creates a form to create a ScanHistory entity.
-     *
-     * @param ScanHistory $entity The entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createCreateForm(ScanHistory $entity)
-    {
-        $form = $this->createForm(new ScanHistoryType(), $entity, array(
-            'action' => $this->generateUrl('scanhistory_create'),
-            'method' => 'POST',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Create'));
-
-        return $form;
-    }
-
-    /**
-     * Displays a form to create a new ScanHistory entity.
-     *
-     */
-    public function newAction()
-    {
-        $entity = new ScanHistory();
-        $form   = $this->createCreateForm($entity);
-
-        return $this->render('AppBundle:ScanHistory:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
-    }
 
     /**
      * Finds and displays a ScanHistory entity.
