@@ -10,7 +10,7 @@ class Collector {
      * @param string $netRange
      */
     public function scan($netRange) {
-        $cmd = printf('/srv/script/discovery.sh %s %s %s %s', $netRange, self::USERNAME, self::PASSWORD, self::HOST);
+        $cmd = '/srv/script/discovery.sh '.$netRange.' '.self::USERNAME.' '.self::PASSWORD.' '.self::HOST;
         $return = exec($cmd);
         die($return);
     }
