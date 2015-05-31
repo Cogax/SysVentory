@@ -1,0 +1,10 @@
+composition:
+    path:     /
+    defaults: { _controller: "AppBundle:Composition:index" }
+
+composition_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Composition:show" }
+
+
+

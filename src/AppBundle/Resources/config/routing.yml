@@ -1,3 +1,7 @@
+app_composition:
+    resource: "@AppBundle/Resources/config/routing/composition.yml"
+    prefix:   /composition
+
 app_network:
     resource: "@AppBundle/Resources/config/routing/network.yml"
     prefix:   /network

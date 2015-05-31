@@ -1,0 +1,49 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block fos_user_content -%}
+    <h1>Composition list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>IP</th>
+                <th>Computername</th>
+                <th>CPU</th>
+                <th>Betriebssystem</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('composition_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>
+                    <ul>
+                        {% for nc in entity.networkInterfaces %}
+                            <li>{{ nc.ipv4 }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>{{ entity.machine.computerName }}</td>
+                <td>
+                    <ul>
+                        {% for cpu in entity.cpus %}
+                            <li>{{ cpu.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>{{ entity.operatingSystem.name }} ({{ entity.operatingSystem.architecture }})</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('composition_show', { 'id': entity.id }) }}">show</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% endblock %}

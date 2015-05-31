@@ -14,7 +14,6 @@ use AppBundle\Form\NetworkType;
  */
 class NetworkController extends Controller
 {
-
     /**
      * Lists all Network entities.
      *
