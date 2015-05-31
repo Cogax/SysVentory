@@ -15,29 +15,29 @@
             </tr>
         </thead>
         <tbody>
-        {% for entity in entities %}
+        {% for composition in compositions %}
             <tr>
-                <td><a href="{{ path('composition_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td><a href="{{ path('composition_show', { 'id': composition.id }) }}">{{ composition.id }}</a></td>
                 <td>
                     <ul>
-                        {% for nc in entity.networkInterfaces %}
+                        {% for nc in composition.networkInterfaces %}
                             <li>{{ nc.ipv4 }}</li>
                         {% endfor %}
                     </ul>
                 </td>
-                <td>{{ entity.machine.computerName }}</td>
+                <td>{{ composition.machine.computerName }}</td>
                 <td>
                     <ul>
-                        {% for cpu in entity.cpus %}
+                        {% for cpu in composition.cpus %}
                             <li>{{ cpu.name }}</li>
                         {% endfor %}
                     </ul>
                 </td>
-                <td>{{ entity.operatingSystem.name }} ({{ entity.operatingSystem.architecture }})</td>
+                <td>{{ composition.operatingSystem.name }} ({{ composition.operatingSystem.architecture }})</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('composition_show', { 'id': entity.id }) }}">show</a>
+                            <a href="{{ path('composition_show', { 'id': composition.id }) }}">show</a>
                         </li>
                     </ul>
                 </td>

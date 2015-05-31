@@ -19,7 +19,6 @@ class CompositionCache
      */
     private $hash;
 
-
     /**
      * @ORM\OneToOne(targetEntity="Composition")
      */

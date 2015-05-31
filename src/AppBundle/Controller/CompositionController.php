@@ -22,10 +22,12 @@ class CompositionController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AppBundle:Composition')->findAll();
+        $compositions = $em->getRepository('AppBundle:Composition')->findAll();
+        $compositionHistories = $em->getRepository('AppBundle:CompositionHistory')->findAll();
 
         return $this->render('AppBundle:Composition:index.html.twig', array(
-            'entities' => $entities,
+            'compositions' => $compositions,
+            'compositionHistories' => $compositionHistories,
         ));
     }
 
