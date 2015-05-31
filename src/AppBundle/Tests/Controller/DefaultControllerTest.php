@@ -11,7 +11,7 @@ class DefaultControllerTest extends WebTestCase
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/');
-        $this->assertGreaterThan(0, $crawler->filter('a:contains("SysVentory")')->count(), 'Missing Logo element!');
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("SysVentory")')->count(), 'Missing Logo element!');
     }
 
 }
