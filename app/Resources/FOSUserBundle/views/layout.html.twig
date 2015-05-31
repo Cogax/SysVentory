@@ -7,6 +7,8 @@
     {% block stylesheets %}
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" />
         <link href="{{ asset('bundles/app/css/app.css') }}" rel="stylesheet" />
+        <link href="{{ asset('bundles/app/css/theme.bootstrap.css') }}" rel="stylesheet" />
+        <link href="{{ asset('bundles/app/css/jquery.tablesorter.pager.css') }}" rel="stylesheet" />
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 </head>
@@ -74,6 +76,10 @@
 {% block javascripts %}
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="{{ asset('bundles/app/js/jquery.tablesorter.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/jquery.tablesorter.widgets.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/jquery.tablesorter.pager.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/tablesorter.js') }}"></script>
 {% endblock %}
 </body>
 </html>

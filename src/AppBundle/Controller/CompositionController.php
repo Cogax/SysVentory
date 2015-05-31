@@ -21,9 +21,14 @@ class CompositionController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $compositions = $em->getRepository('AppBundle:Composition')->findAll();
-        $compositionHistories = $em->getRepository('AppBundle:CompositionHistory')->findAll();
+
+        $compositionHistories = array();
+        foreach($compositions as $composition) {
+            $compositionHistory = $em->getRepository('AppBundle:CompositionHistory')->findOneByComposition($composition, array('time' => 'DESC'));
+            $compositionHistories[$composition->getId()] = $compositionHistory;
+        }
+
 
         return $this->render('AppBundle:Composition:index.html.twig', array(
             'compositions' => $compositions,
