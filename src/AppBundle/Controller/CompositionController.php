@@ -2,10 +2,7 @@
 
 namespace AppBundle\Controller;
 
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
-use AppBundle\Entity\Composition;
 
 /**
  * Composition controller.
@@ -52,6 +49,29 @@ class CompositionController extends Controller
 
         return $this->render('AppBundle:Composition:show.html.twig', array(
             'composition'      => $entity,
+        ));
+    }
+
+    /**
+     * Compares two Compositions
+     */
+    public function compareAction($oldId, $newId) {
+        $em = $this->getDoctrine()->getManager();
+
+        $repo = $em->getRepository('AppBundle:Composition');
+        $oldComposition = $repo->find($oldId);
+        $newComposition = $repo->find($newId);
+
+        if (!$oldComposition) {
+            throw $this->createNotFoundException('Unable to find old Composition entity.');
+        }
+        if (!$newComposition) {
+            throw $this->createNotFoundException('Unable to find new Composition entity.');
+        }
+
+        return $this->render('AppBundle:Composition:compare.html.twig', array(
+          'composition'      => $oldComposition,
+          'new'      => $newComposition,
         ));
     }
 }

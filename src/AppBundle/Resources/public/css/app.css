@@ -43,6 +43,7 @@ h1.title {
     text-align: center;
 }
 
+
 /*
 //-- Panels --//
 */
@@ -52,4 +53,13 @@ h1.title {
 .panel-inverse > .panel-heading {
     background-color: #222;
     color: #9d9d9d;
+}
+
+
+/*
+//-- Tables --//
+*/
+table.tablesorter td > ul {
+    list-style: none;
+    padding-left: 0;
 }

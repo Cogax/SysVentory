@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Entity\Network;
+use AppBundle\Entity\ScanHistory;
 use AppBundle\Form\Model\Scan;
 use AppBundle\Form\Type\ScanType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -50,6 +51,17 @@ class ScanController extends Controller {
                 if($this->get('kernel')->getEnvironment() != 'test') {
                     //do something here
                     $this->get("app.collector")->scan($scan->getRange());
+
+                    $history = new ScanHistory();
+                    if(isset($network)) {
+                        $history->setNetwork($network);
+                    } else {
+                        $history->setNetRange($scan->getRange());
+                    }
+                    $history->setTime(new \DateTime());
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($history);
+                    $em->flush();
                 } else {
                     return new Response("stored!", 201);
                 }
@@ -66,9 +78,16 @@ class ScanController extends Controller {
      * Scan all stored networks.
      */
     public function scanStoredNetworksAction() {
-        $networks = $this->getDoctrine()->getManager()->getRepository("AppBundle:Network")->findAll();
+        $em = $this->getDoctrine()->getManager();
+        $networks = $em->getRepository("AppBundle:Network")->findAll();
         foreach($networks as $network) {
             $this->get("app.collector")->scan($network->getNetRange());
+
+            $history = new ScanHistory();
+            $history->setNetwork($network);
+            $history->setTime(new \DateTime());
+            $em->persist($history);
+            $em->flush();
         }
     }
 }
