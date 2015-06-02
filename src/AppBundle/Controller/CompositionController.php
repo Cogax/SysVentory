@@ -51,7 +51,7 @@ class CompositionController extends Controller
         }
 
         return $this->render('AppBundle:Composition:show.html.twig', array(
-            'entity'      => $entity,
+            'composition'      => $entity,
         ));
     }
 }

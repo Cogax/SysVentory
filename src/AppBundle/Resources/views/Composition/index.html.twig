@@ -6,7 +6,7 @@
     <table class="records_list tablesorter">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>uuid</th>
                 <th>Computername</th>
                 <th>IP</th>
                 <th>CPU</th>
@@ -17,7 +17,7 @@
         </thead>
         <tfoot>
             <tr>
-                <th>Id</th>
+                <th>uuid</th>
                 <th>Computername</th>
                 <th>IP</th>
                 <th>CPU</th>
@@ -45,7 +45,7 @@
         <tbody>
         {% for composition in compositions %}
             <tr>
-                <td><a href="{{ path('composition_show', { 'id': composition.id }) }}">{{ composition.id }}</a></td>
+                <td><a href="{{ path('composition_show', { 'id': composition.id }) }}">{{ composition.machine.uuid }}</a></td>
                 <td>{{ composition.machine.computerName }}</td>
                 <td>
                     <ul>
