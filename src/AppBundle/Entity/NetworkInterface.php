@@ -300,4 +300,21 @@ class NetworkInterface
     {
         return $this->mac;
     }
+
+    /**
+     * @param \AppBundle\Entity\NetworkInterface $networkInterface
+     * @return bool
+     */
+    public function equalByProperties(NetworkInterface $networkInterface) {
+        return (
+          $this->getIpv4() == $networkInterface->getIpv4() &&
+          $this->getIpv4DefaultGateway() == $networkInterface->getIpv4DefaultGateway() &&
+          $this->getIpv4Subnet() == $networkInterface->getIpv4Subnet() &&
+          $this->getIpv6() == $networkInterface->getIpv6() &&
+          $this->getIpv6DefaultGateway() == $networkInterface->getIpv6DefaultGateway() &&
+          $this->getIpv6Subnet() == $networkInterface->getIpv6Subnet() &&
+          $this->getDescription() == $networkInterface->getDescription() &&
+          $this->getDhcp() == $networkInterface->getDhcp()
+        );
+    }
 }

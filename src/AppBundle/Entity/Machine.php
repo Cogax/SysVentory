@@ -210,4 +210,19 @@ class Machine
     {
         return $this->uuid;
     }
+
+    /**
+     * @param \AppBundle\Entity\Machine $machine
+     * @return bool
+     */
+    public function equalByProperties(Machine $machine) {
+        return (
+            $this->getComputerName() == $machine->getComputerName() &&
+            $this->getManufacturer() == $machine->getManufacturer() &&
+            $this->getMemory() == $machine->getMemory() &&
+            $this->getModel() == $machine->getModel() &&
+            $this->getSerialNumber() == $machine->getSerialNumber() &&
+            $this->getUuid() == $machine->getUuid()
+        );
+    }
 }

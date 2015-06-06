@@ -66,6 +66,7 @@ class CompositionService extends Controller
             $composition = $this->createCompositionFromXML($xml);
             $compositionCache = new CompositionCache($hash, $composition);
 
+
             $this->entityManager->persist($composition);
             $this->entityManager->persist($compositionCache);
             $this->entityManager->flush();

@@ -2,7 +2,7 @@
 
 {% block fos_user_content -%}
     <div class="container">
-        <h1>Composition #{{ composition.id }}</h1>
+        <h1>Composition #{{ oldComposition.id }}</h1>
 
         <div class="panel panel-default panel-inverse">
             <div class="panel-heading">
@@ -20,17 +20,37 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>{{ composition.machine.uuid }}</td>
-                    <td>{{ composition.machine.manufacturer }}</td>
-                    <td>{{ composition.machine.model }}</td>
-                    <td>{{ composition.machine.memory }}</td>
-                    <td>{{ composition.machine.computerName }}</td>
-                    <td>{{ composition.machine.serialNumber }}</td>
-                </tr>
+                {% if (oldComputer and newComputer) %}
+                    <tr class="danger">
+                        <td>{{ oldComputer.uuid }}</td>
+                        <td>{{ oldComputer.manufacturer }}</td>
+                        <td>{{ oldComputer.model }}</td>
+                        <td>{{ oldComputer.memory }}</td>
+                        <td>{{ oldComputer.computerName }}</td>
+                        <td>{{ oldComputer.serialNumber }}</td>
+                    </tr>
+                    <tr class="success">
+                        <td>{{ newComputer.uuid }}</td>
+                        <td>{{ newComputer.manufacturer }}</td>
+                        <td>{{ newComputer.model }}</td>
+                        <td>{{ newComputer.memory }}</td>
+                        <td>{{ newComputer.computerName }}</td>
+                        <td>{{ newComputer.serialNumber }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td>{{ oldComposition.machine.uuid }}</td>
+                        <td>{{ oldComposition.machine.manufacturer }}</td>
+                        <td>{{ oldComposition.machine.model }}</td>
+                        <td>{{ oldComposition.machine.memory }}</td>
+                        <td>{{ oldComposition.machine.computerName }}</td>
+                        <td>{{ oldComposition.machine.serialNumber }}</td>
+                    </tr>
+                {% endif %}
                 </tbody>
             </table>
         </div>
+
 
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -46,12 +66,27 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>{{ composition.operatingSystem.name }}</td>
-                    <td>{{ composition.operatingSystem.version }}</td>
-                    <td>{{ composition.operatingSystem.servicePack }}</td>
-                    <td>{{ composition.operatingSystem.architecture }}</td>
-                </tr>
+                {% if (oldOS and newOS) %}
+                    <tr class="danger">
+                        <td>{{ oldOS.name }}</td>
+                        <td>{{ oldOS.version }}</td>
+                        <td>{{ oldOS.servicePack }}</td>
+                        <td>{{ oldOS.architecture }}</td>
+                    </tr>
+                    <tr class="success">
+                        <td>{{ newOS.name }}</td>
+                        <td>{{ newOS.version }}</td>
+                        <td>{{ newOS.servicePack }}</td>
+                        <td>{{ newOS.architecture }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td>{{ oldComposition.operatingSystem.name }}</td>
+                        <td>{{ oldComposition.operatingSystem.version }}</td>
+                        <td>{{ oldComposition.operatingSystem.servicePack }}</td>
+                        <td>{{ oldComposition.operatingSystem.architecture }}</td>
+                    </tr>
+                {% endif %}
                 </tbody>
             </table>
         </div>
@@ -75,8 +110,34 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for nc in composition.networkInterfaces %}
+                {% for nc in networkInterfaces.normal %}
                     <tr>
+                        <td>{{ nc.ipv4 }}</td>
+                        <td>{{ nc.ipv4Subnet }}</td>
+                        <td>{{ nc.ipv4DefaultGateway }}</td>
+                        <td>{{ nc.ipv6 }}</td>
+                        <td>{{ nc.ipv6Subnet }}</td>
+                        <td>{{ nc.ipv6DefaultGateway }}</td>
+                        <td>{{ nc.dhcp ? 'Ja':'Nein' }}</td>
+                        <td>{{ nc.mac }}</td>
+                        <td>{{ nc.description }}</td>
+                    </tr>
+                {% endfor %}
+                {% for nc in networkInterfaces.red %}
+                    <tr class="danger">
+                        <td>{{ nc.ipv4 }}</td>
+                        <td>{{ nc.ipv4Subnet }}</td>
+                        <td>{{ nc.ipv4DefaultGateway }}</td>
+                        <td>{{ nc.ipv6 }}</td>
+                        <td>{{ nc.ipv6Subnet }}</td>
+                        <td>{{ nc.ipv6DefaultGateway }}</td>
+                        <td>{{ nc.dhcp ? 'Ja':'Nein' }}</td>
+                        <td>{{ nc.mac }}</td>
+                        <td>{{ nc.description }}</td>
+                    </tr>
+                {% endfor %}
+                {% for nc in networkInterfaces.green %}
+                    <tr class="success">
                         <td>{{ nc.ipv4 }}</td>
                         <td>{{ nc.ipv4Subnet }}</td>
                         <td>{{ nc.ipv4DefaultGateway }}</td>
@@ -106,8 +167,24 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for cpu in composition.cpus %}
+                {% for cpu in cpus.normal %}
                     <tr>
+                        <td>{{ cpu.name }}</td>
+                        <td>{{ cpu.family }}</td>
+                        <td>{{ cpu.clock }}</td>
+                        <td>{{ cpu.cores }}</td>
+                    </tr>
+                {% endfor %}
+                {% for cpu in cpus.red %}
+                    <tr class="danger">
+                        <td>{{ cpu.name }}</td>
+                        <td>{{ cpu.family }}</td>
+                        <td>{{ cpu.clock }}</td>
+                        <td>{{ cpu.cores }}</td>
+                    </tr>
+                {% endfor %}
+                {% for cpu in cpus.green %}
+                    <tr class="success">
                         <td>{{ cpu.name }}</td>
                         <td>{{ cpu.family }}</td>
                         <td>{{ cpu.clock }}</td>
@@ -131,8 +208,22 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for printer in composition.printers %}
+                {% for printer in printers.normal %}
                     <tr>
+                        <td>{{ printer.name }}</td>
+                        <td>{{ printer.driver }}</td>
+                        <td>{{ printer.version }}</td>
+                    </tr>
+                {% endfor %}
+                {% for printer in printers.red %}
+                    <tr class="danger">
+                        <td>{{ printer.name }}</td>
+                        <td>{{ printer.driver }}</td>
+                        <td>{{ printer.version }}</td>
+                    </tr>
+                {% endfor %}
+                {% for printer in printers.green %}
+                    <tr class="success">
                         <td>{{ printer.name }}</td>
                         <td>{{ printer.driver }}</td>
                         <td>{{ printer.version }}</td>
@@ -154,8 +245,20 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for software in composition.softwares %}
+                {% for software in softwares.normal %}
                     <tr>
+                        <td>{{ software.name }}</td>
+                        <td>{{ software.version }}</td>
+                    </tr>
+                {% endfor %}
+                {% for software in softwares.red %}
+                    <tr class="danger">
+                        <td>{{ software.name }}</td>
+                        <td>{{ software.version }}</td>
+                    </tr>
+                {% endfor %}
+                {% for software in softwares.green %}
+                    <tr class="success">
                         <td>{{ software.name }}</td>
                         <td>{{ software.version }}</td>
                     </tr>

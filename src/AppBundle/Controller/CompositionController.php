@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
@@ -69,9 +70,38 @@ class CompositionController extends Controller
             throw $this->createNotFoundException('Unable to find new Composition entity.');
         }
 
+        $oldComputer = false;
+        $newComputer = false;
+        if(!$oldComposition->getMachine()->equalByProperties($newComposition->getMachine())) {
+            $newComputer = $newComposition->getMachine();
+            $oldComputer = $oldComposition->getMachine();
+        }
+
+        $oldOS = false;
+        $newOS = false;
+        if(!$oldComposition->getOperatingSystem()->equalByProperties($newComposition->getOperatingSystem())) {
+            $newOS = $newComposition->getOperatingSystem();
+            $oldOS = $oldComposition->getOperatingSystem();
+        }
+
+        $diffService = $this->get('app.component_diff');
+        $networkInterfaces = $diffService->diff($oldComposition->getNetworkInterfaces(), $newComposition->getNetworkInterfaces());
+        $cpus = $diffService->diff($oldComposition->getCpus(), $newComposition->getCpus());
+        $printers = $diffService->diff($oldComposition->getPrinters(), $newComposition->getPrinters());
+        $softwares = $diffService->diff($oldComposition->getSoftwares(), $newComposition->getSoftwares());
+
+
         return $this->render('AppBundle:Composition:compare.html.twig', array(
-          'composition'      => $oldComposition,
-          'new'      => $newComposition,
+          'oldComposition' => $oldComposition,
+          'newComposition' => $newComposition,
+          'oldComputer' => $oldComputer,
+          'newComputer' => $newComputer,
+          'oldOS' => $oldOS,
+          'newOS' => $newOS,
+          'networkInterfaces' => $networkInterfaces,
+          'cpus' => $cpus,
+          'printers' => $printers,
+          'softwares' => $softwares,
         ));
     }
 }

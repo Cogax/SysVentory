@@ -90,4 +90,11 @@ class Software
     {
         return $this->version;
     }
+
+    public function equalByProperties(Software $software) {
+        return (
+          $this->getName() == $software->getName() &&
+          $this->getVersion() == $software->getVersion()
+        );
+    }
 }

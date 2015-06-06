@@ -120,4 +120,16 @@ class Printer
     {
         return $this->version;
     }
+
+    /**
+     * @param \AppBundle\Entity\Printer $printer
+     * @return bool
+     */
+    public function equalByProperties(Printer $printer) {
+        return (
+          $this->getName() == $printer->getName() &&
+          $this->getVersion() == $printer->getVersion() &&
+          $this->getDriver() == $printer->getDriver()
+        );
+    }
 }

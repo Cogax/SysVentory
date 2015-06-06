@@ -150,4 +150,17 @@ class OperatingSystem
     {
         return $this->architecture;
     }
+
+    /**
+     * @param \AppBundle\Entity\OperatingSystem $os
+     * @return bool
+     */
+    public function equalByProperties(OperatingSystem $os) {
+        return (
+          $this->getName() == $os->getName() &&
+          $this->getArchitecture() == $os->getArchitecture() &&
+          $this->getServicePack() == $os->getServicePack() &&
+          $this->getVersion() == $os->getVersion()
+        );
+    }
 }

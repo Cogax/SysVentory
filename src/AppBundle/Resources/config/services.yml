@@ -17,6 +17,9 @@ services:
   app.hash_generator:
     class: AppBundle\Service\Util\HashGenerator
 
+  app.component_diff:
+    class: AppBundle\Service\Util\ComponentDiff
+
   app.serializer:
     class: AppBundle\Service\Util\Serializer
     arguments: [ @jms_serializer ]
