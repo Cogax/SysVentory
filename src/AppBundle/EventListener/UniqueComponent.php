@@ -2,7 +2,6 @@
 
 namespace AppBundle\EventListener;
 
-
 use AppBundle\Entity\Composition;
 use AppBundle\Entity\Cpu;
 use Doctrine\ORM\EntityManager;
@@ -10,6 +9,9 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 
 class UniqueComponent {
 
+    /**
+     * @param \Doctrine\ORM\Event\LifecycleEventArgs $args
+     */
     public function prePersist(LifecycleEventArgs $args) {
         $entity = $args->getEntity();
 
@@ -17,7 +19,8 @@ class UniqueComponent {
             $entityManager = $args->getEntityManager();
 
             /**
-             * @todo A custom repository (maybe defaultrepo) would be better to
+             * @todo
+             * A custom repository (maybe defaultrepo) would be better to
              * check dynamicly (maybe by annotations) if the entity already
              * exists in db. I would prefer to call it something like
              * findByProperties or findByDefinedProperties
@@ -31,8 +34,10 @@ class UniqueComponent {
         }
     }
 
-
-
+    /**
+     * @param \AppBundle\Entity\Composition $entity
+     * @param \Doctrine\ORM\EntityManager $entityManager
+     */
     private function prePersistCompositionHandleCpus(Composition $entity, EntityManager $entityManager) {
         $cpus = $entity->getCpus();
         /** @var \AppBundle\Entity\Cpu $cpu */
@@ -51,6 +56,10 @@ class UniqueComponent {
         }
     }
 
+    /**
+     * @param \AppBundle\Entity\Composition $entity
+     * @param \Doctrine\ORM\EntityManager $entityManager
+     */
     private function prePersistCompositionHandleMachine(Composition $entity, EntityManager $entityManager) {
         // Handle Machine
         $machine = $entity->getMachine();
@@ -64,10 +73,14 @@ class UniqueComponent {
         ), array('id' => 'ASC'));
 
         if(count($results) > 0) {
-            $machine = $results[0];
+           $entity->setMachine($results[0]);
         }
     }
 
+    /**
+     * @param \AppBundle\Entity\Composition $entity
+     * @param \Doctrine\ORM\EntityManager $entityManager
+     */
     private function prePersistCompositionHandleNetworkInterfaces(Composition $entity, EntityManager $entityManager) {
         // Handle NetworkInterface
         $nics = $entity->getNetworkInterfaces();
@@ -91,6 +104,10 @@ class UniqueComponent {
         }
     }
 
+    /**
+     * @param \AppBundle\Entity\Composition $entity
+     * @param \Doctrine\ORM\EntityManager $entityManager
+     */
     private function prePersistCompositionHandleOperatingSystem(Composition $entity, EntityManager $entityManager) {
         // Handle OperatingSystem
         $os = $entity->getOperatingSystem();
@@ -106,6 +123,10 @@ class UniqueComponent {
         }
     }
 
+    /**
+     * @param \AppBundle\Entity\Composition $entity
+     * @param \Doctrine\ORM\EntityManager $entityManager
+     */
     private function prePersistCompositionHandlePrinters(Composition $entity, EntityManager $entityManager) {
         // Handle Printers
         $printers = $entity->getPrinters();
@@ -123,6 +144,10 @@ class UniqueComponent {
         }
     }
 
+    /**
+     * @param \AppBundle\Entity\Composition $entity
+     * @param \Doctrine\ORM\EntityManager $entityManager
+     */
     private function prePersistCompositionHandleSoftwares(Composition $entity, EntityManager $entityManager) {
         // Handle Softwares
         $softwares = $entity->getSoftwares();
@@ -138,6 +163,4 @@ class UniqueComponent {
             }
         }
     }
-
-
 }

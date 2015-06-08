@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
@@ -21,15 +20,24 @@ class CompositionController extends Controller
         $em = $this->getDoctrine()->getManager();
         $compositions = $em->getRepository('AppBundle:Composition')->findAll();
 
+        // add history entries
         $compositionHistories = array();
         foreach($compositions as $composition) {
             $compositionHistory = $em->getRepository('AppBundle:CompositionHistory')->findOneByComposition($composition, array('time' => 'DESC'));
             $compositionHistories[$composition->getId()] = $compositionHistory;
         }
 
+        // distinct compositions on machine uuid by date
+        $distinctCompositions = array();
+        foreach($compositions as $composition) {
+            if(!array_key_exists($composition->getMachine()->getUuid(), $distinctCompositions) ||
+                $compositionHistories[$composition->getId()]->getTime() > $compositionHistories[$distinctCompositions[$composition->getMachine()->getUuid()]->getId()]->getTime()) {
+                $distinctCompositions[$composition->getMachine()->getUuid()] = $composition;
+            }
+        }
 
         return $this->render('AppBundle:Composition:index.html.twig', array(
-            'compositions' => $compositions,
+            'compositions' => $distinctCompositions,
             'compositionHistories' => $compositionHistories,
         ));
     }

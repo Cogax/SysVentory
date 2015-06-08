@@ -29,7 +29,7 @@ class Composition
     private $networkInterfaces;
 
     /**
-     * @ORM\OneToOne(targetEntity="Machine", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Machine", cascade={"persist"})
      */
     private $machine;
 
@@ -41,7 +41,7 @@ class Composition
     private $cpus;
 
     /**
-     * @ORM\OneToOne(targetEntity="OperatingSystem", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="OperatingSystem", cascade={"persist"})
      */
     private $operatingSystem;
 

@@ -57,7 +57,7 @@ class CompositionService extends Controller
      * composition directly from xml.
      *
      * @param string $xml
-     * @return integer
+     * @return int
      */
     private function getCompositionId($xml) {
         $hash = $this->hashGenerator->getHash($xml);
@@ -66,14 +66,12 @@ class CompositionService extends Controller
             $composition = $this->createCompositionFromXML($xml);
             $compositionCache = new CompositionCache($hash, $composition);
 
-
             $this->entityManager->persist($composition);
             $this->entityManager->persist($compositionCache);
             $this->entityManager->flush();
 
             $composition_id = $composition->getId();
         }
-
         return $composition_id;
     }
 
