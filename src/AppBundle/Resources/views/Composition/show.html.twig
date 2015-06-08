@@ -2,7 +2,58 @@
 
 {% block fos_user_content -%}
 <div class="container">
-    <h1>Composition #{{ composition.id }}</h1>
+    <h1>Machine #{{ composition.machine.uuid }}</h1>
+
+    {% if historyVersions|length > 1 %}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="versions">
+                <div class="version-numbers">{{ historyVersions|length }}</div>
+                <div class="subtext">Versions found</div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default panel-inverse">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Versionen</h3>
+                </div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Datum</th>
+                        <th style="text-align: center;">Alt</th>
+                        <th style="text-align: center;">Neu</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for c in historyVersions %}
+                    <tr
+                        {% if loop.first %}
+                            class="active"
+                        {% endif %}
+                    >
+                        <td>{{ c.id }}</td>
+                        <td>{{ c.time|date("d.m.Y H:i:s") }}</td>
+                        <td align="center"><input type="radio" name="compare-old" value="{{ c.id }}"/></td>
+                        <td align="center"><input type="radio" name="compare-new" value="{{ c.id }}"
+                            {% if loop.first %}
+                                checked
+                            {% endif %}/></td>
+                    </tr>git s
+                    {% endfor %}
+                    <tr>
+                        <td colspan="2"></td>
+                        <td colspan="2" align="center">
+                            <input type="submit" class="btn btn-primary btn-xs" value="Vergleichen" />
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endif %}
 
     <div class="panel panel-default panel-inverse">
         <div class="panel-heading">
@@ -172,4 +223,29 @@
         </li>
     </ul>
 </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(function() {
+            //-- Variables --
+            var $compareSubmit = $("input[type=submit]");
+
+            //-- Default behaviors --
+            $compareSubmit.attr('disabled', 'disabled');
+
+            $("input:radio").click(function(event) {
+                if($(this).closest("tr").find("input:radio:checked").length == 2) {
+                    event.preventDefault();
+                } else if($('input:radio:checked').length == 2) {
+                    $compareSubmit.removeAttr('disabled');
+                }
+            });
+
+            $compareSubmit.click(function() {
+                window.location.href = "/composition/"+$("input[name=compare-old]:checked").val()+"/compare/"+$("input[name=compare-new]:checked").val();
+            });
+
+        });
+    </script>
 {% endblock %}

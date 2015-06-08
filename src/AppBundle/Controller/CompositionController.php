@@ -50,14 +50,31 @@ class CompositionController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AppBundle:Composition')->find($id);
-
-        if (!$entity) {
+        // load composition entity
+        $composition = $em->getRepository('AppBundle:Composition')->find($id);
+        if (!$composition) {
             throw $this->createNotFoundException('Unable to find Composition entity.');
         }
 
+        // load compositions of the machine uuid for comparing
+        $historyVersions = array();
+        $historyCompositions = $em->getRepository('AppBundle:Composition')->findAll();
+        foreach($historyCompositions as $historyComposition) {
+            if($historyComposition->getMachine()->getUuid() != $composition->getMachine()->getUuid()) {
+                continue;
+            }
+
+            $compositionHistory = $em->getRepository('AppBundle:CompositionHistory')->findOneByComposition($historyComposition, array('time' => 'DESC'));
+            $historyVersions[$compositionHistory->getTime()->getTimestamp()] = array(
+                'id' => $historyComposition->getId(),
+                'time' => $compositionHistory->getTime(),
+            );
+        }
+        krsort($historyVersions);
+
         return $this->render('AppBundle:Composition:show.html.twig', array(
-            'composition'      => $entity,
+            'composition'      => $composition,
+            'historyVersions'      => $historyVersions,
         ));
     }
 

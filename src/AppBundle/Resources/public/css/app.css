@@ -54,12 +54,36 @@ h1.title {
     background-color: #222;
     color: #9d9d9d;
 }
-
+.panel-heading {
+    padding: 8px 15px;
+}
+.panel-title {
+    font-size: 14px;
+}
 
 /*
 //-- Tables --//
 */
+table {
+    font-size: 12px;
+}
+table tr.active td {
+    font-weight: bold;
+}
 table.tablesorter td > ul {
     list-style: none;
     padding-left: 0;
+}
+
+/*
+//== Composition ==//
+*/
+.versions {
+    text-align: center;
+    color: rgba(255, 255, 255, .65);
+}
+.versions .version-numbers {
+    font-size: 130px;
+    line-height: 130px;
+    font-weight: bolder;
 }
