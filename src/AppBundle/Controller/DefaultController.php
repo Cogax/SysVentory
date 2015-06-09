@@ -13,6 +13,7 @@ class DefaultController extends Controller
             'compositionHistoryStatistics' => $this->getCompositionHistoryStatisticsData(),
             'compositionSoftwareStatistics' => $this->getSoftwareData($machineCompositions),
             'compositionOperatingSystemStatistics' => $this->getOperatingSystemData($machineCompositions),
+            'compositionChangingStatistics' => $this->getChangingData(),
         ));
     }
 
@@ -56,6 +57,26 @@ class DefaultController extends Controller
             }
         }
         return $oss;
+    }
+
+    private function getChangingData() {
+        $em = $this->getDoctrine()->getManager();
+
+        $historyVersions = array();
+        $historyCompositions = $em->getRepository('AppBundle:Composition')->findAll();
+        foreach($historyCompositions as $historyComposition) {
+            $compositionHistory = $em->getRepository('AppBundle:CompositionHistory')->findOneByComposition($historyComposition, array('time' => 'DESC'));
+            $key = $compositionHistory->getTime()->format("d.m.y");
+            if(!array_key_exists($key, $historyVersions)) {
+                $historyVersions[$key] = array(
+                    'date' => $compositionHistory->getTime(),
+                    'quantity' => 1
+                );
+            } else {
+                $historyVersions[$key]['quantity']++;
+            }
+        }
+        return $historyVersions;
     }
 
 
