@@ -5,17 +5,3 @@ scanhistory:
 scanhistory_show:
     path:     /{id}/show
     defaults: { _controller: "AppBundle:ScanHistory:show" }
-
-scanhistory_edit:
-    path:     /{id}/edit
-    defaults: { _controller: "AppBundle:ScanHistory:edit" }
-
-scanhistory_update:
-    path:     /{id}/update
-    defaults: { _controller: "AppBundle:ScanHistory:update" }
-    methods:  [POST, PUT]
-
-scanhistory_delete:
-    path:     /{id}/delete
-    defaults: { _controller: "AppBundle:ScanHistory:delete" }
-    methods:  [POST, DELETE]
