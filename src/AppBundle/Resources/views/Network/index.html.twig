@@ -19,7 +19,10 @@
                     <td>{{ entity.id }}</td>
                     <td>{{ entity.name }}</td>
                     <td>{{ entity.netRange }}</td>
-                    <td><a href="{{ path('network_edit', { 'id': entity.id }) }}">bearbeiten</a></td>
+                    <td>
+                        <a href="{{ path('network_edit', { 'id': entity.id }) }}">Bearbeiten</a> |
+                        <a href="{{ path('network_scan', { 'id': entity.id }) }}">Scanen</a>
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>

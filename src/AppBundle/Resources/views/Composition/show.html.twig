@@ -226,7 +226,9 @@
             var $compareSubmit = $("input[type=submit]");
 
             //-- Default behaviors --
-            $compareSubmit.attr('disabled', 'disabled');
+            if($('input:radio:checked').length == 1) {
+                $compareSubmit.attr('disabled', 'disabled');
+            }
 
             $("input:radio").click(function(event) {
                 if($(this).closest("tr").find("input:radio:checked").length == 2) {
