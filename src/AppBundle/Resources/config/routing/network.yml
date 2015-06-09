@@ -2,10 +2,6 @@ network:
     path:     /
     defaults: { _controller: "AppBundle:Network:index" }
 
-network_show:
-    path:     /{id}/show
-    defaults: { _controller: "AppBundle:Network:show" }
-
 network_new:
     path:     /new
     defaults: { _controller: "AppBundle:Network:new" }

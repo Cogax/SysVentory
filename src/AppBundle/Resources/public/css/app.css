@@ -19,6 +19,7 @@ body {
 */
 h1 {
     margin-bottom: 40px;
+    color: rgba(255, 255, 255, 0.75);
 }
 h1.title {
     color: white;
@@ -60,6 +61,10 @@ h1.title {
 .panel-title {
     font-size: 14px;
 }
+.panel-title .fa {
+    font-size: 20px;
+    margin-right: 15px;
+}
 
 /*
 //-- Tables --//
@@ -73,6 +78,22 @@ table tr.active td {
 table.tablesorter td > ul {
     list-style: none;
     padding-left: 0;
+}
+table:not(.tablesorter) thead th {
+    background-color: white;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 2px 5px;
+}
+.tablesorter-bootstrap thead th, .tablesorter-bootstrap thead td, .tablesorter-bootstrap tfoot th, .tablesorter-bootstrap tfoot td {
+    font-size: 13px;
+}
+
+/*
+//== Forms ==//
+*/
+.form-control {
+    height: 25px;
 }
 
 /*

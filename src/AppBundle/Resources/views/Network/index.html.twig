@@ -1,43 +1,32 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
 {% block fos_user_content -%}
-    <h1>Network list</h1>
+    <div class="container">
+        <h1>Gespeicherte Netzwerke</h1>
 
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Netrange</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('network_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.name }}</td>
-                <td>{{ entity.netRange }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('network_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('network_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <table class="records_list table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Range</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for entity in entities %}
+                <tr>
+                    <td>{{ entity.id }}</td>
+                    <td>{{ entity.name }}</td>
+                    <td>{{ entity.netRange }}</td>
+                    <td><a href="{{ path('network_edit', { 'id': entity.id }) }}">bearbeiten</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-        <ul>
-        <li>
-            <a href="{{ path('network_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
-    {% endblock %}
+        <a class="btn btn-primary" href="{{ path('scan_new') }}">
+            Neuen Scan erfassen
+        </a>
+    </div>
+{% endblock %}
