@@ -28,6 +28,8 @@ class NetworkController extends Controller
             'entities' => $entities,
         ));
     }
+
+
     /**
      * Creates a new Network entity.
      *

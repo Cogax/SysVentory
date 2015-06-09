@@ -6,6 +6,10 @@ network_new:
     path:     /new
     defaults: { _controller: "AppBundle:Network:new" }
 
+network_scan:
+    path:     /{id}/scan/
+    defaults: { _controller: "AppBundle:Scan:scanNetwork" }
+
 network_create:
     path:     /create
     defaults: { _controller: "AppBundle:Network:create" }

@@ -41,7 +41,6 @@ class ScanController extends Controller {
                           'errors' => $errors,
                           'form'   => $form->createView(),
                         ));
-                        //die(print_r($errors));
                     }
 
                     $em = $this->getDoctrine()->getManager();
@@ -62,9 +61,8 @@ class ScanController extends Controller {
                     $em = $this->getDoctrine()->getManager();
                     $em->persist($history);
                     $em->flush();
-                } else {
-                    return new Response("stored!", 201);
                 }
+                return $this->render('AppBundle:Scan:done.html.twig', array());
             }
         }
 
@@ -89,5 +87,26 @@ class ScanController extends Controller {
             $em->persist($history);
             $em->flush();
         }
+
+        return $this->render('AppBundle:Scan:done.html.twig', array());
+    }
+
+    /**
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function scanNetworkAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        $network = $em->getRepository("AppBundle:Network")->findById($id);
+
+        $this->get("app.collector")->scan($network->getNetRange());
+
+        $history = new ScanHistory();
+        $history->setNetwork($network);
+        $history->setTime(new \DateTime());
+        $em->persist($history);
+        $em->flush();
+
+        return $this->render('AppBundle:Scan:done.html.twig', array());
     }
 }
