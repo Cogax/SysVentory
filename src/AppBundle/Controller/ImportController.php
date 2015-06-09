@@ -29,7 +29,7 @@ class ImportController extends Controller
         }
 
         if($request->getContent() == '') {
-            return new Response($request->getContent(), Response::HTTP_I_AM_A_TEAPOT);
+            return new Response($request->getContent(), Response::HTTP_NOT_FOUND);
         }
 
         // Check if XML is valid
