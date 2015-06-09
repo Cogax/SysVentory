@@ -33,7 +33,7 @@
                         {% endif %}
                     >
                         <td>{{ c.id }}</td>
-                        <td>{{ c.time|date("d.m.Y H:i:s") }}</td>
+                        <td><a href="{{ path('composition_show_old', { 'id': c.id }) }}">{{ c.time|date("d.m.Y H:i:s") }}</a></td>
                         <td align="center"><input type="radio" name="compare-old" value="{{ c.id }}"/></td>
                         <td align="center"><input type="radio" name="compare-new" value="{{ c.id }}"
                             {% if loop.first %}
@@ -53,7 +53,7 @@
         </div>
     </div>
 
-    <div class="panel panel-default panel-inverse">
+    <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title"><i class="fa fa-desktop"></i> Computer</h3>
         </div>

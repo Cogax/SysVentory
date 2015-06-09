@@ -69,6 +69,22 @@ class CompositionController extends Controller
     }
 
     /**
+     * Finds and displays a Composition entity.
+     *
+     */
+    public function showOldAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        // load composition entity
+        $composition = $em->getRepository('AppBundle:Composition')->find($id);
+
+        return $this->render('AppBundle:Composition:showOld.html.twig', array(
+          'composition'      => $composition,
+        ));
+    }
+
+    /**
      * Compares two Compositions
      */
     public function compareAction($oldId, $newId) {

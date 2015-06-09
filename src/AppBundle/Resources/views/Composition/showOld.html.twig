@@ -1,0 +1,171 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block fos_user_content -%}
+    <div class="container">
+        <h1>Composition #{{ composition.id }}</h1>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-desktop"></i> Computer</h3>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Uuid</th>
+                    <th>Hersteller</th>
+                    <th>Model</th>
+                    <th>Speicher</th>
+                    <th>Computer Name</th>
+                    <th>Seriennummer</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>{{ composition.machine.uuid }}</td>
+                    <td>{{ composition.machine.manufacturer }}</td>
+                    <td>{{ composition.machine.model }}</td>
+                    <td>{{ composition.machine.memory }}</td>
+                    <td>{{ composition.machine.computerName }}</td>
+                    <td>{{ composition.machine.serialNumber }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-windows"></i> Betriebssystem</h3>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Version</th>
+                    <th>Service Pack</th>
+                    <th>Architektur</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>{{ composition.operatingSystem.name }}</td>
+                    <td>{{ composition.operatingSystem.version }}</td>
+                    <td>{{ composition.operatingSystem.servicePack }}</td>
+                    <td>{{ composition.operatingSystem.architecture }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-wifi"></i> Netzwerkkarten</h3>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>IP (v4)</th>
+                    <th>IP (v4) Subnet</th>
+                    <th>IP (v4) Default Gateway</th>
+                    <th>IP (v6)</th>
+                    <th>IP (v6) Subnet</th>
+                    <th>IP (v6) Default Gateway</th>
+                    <th>DHCP</th>
+                    <th>MAC</th>
+                    <th>Beschreibung</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for nc in composition.networkInterfaces %}
+                    <tr>
+                        <td>{{ nc.ipv4 }}</td>
+                        <td>{{ nc.ipv4Subnet }}</td>
+                        <td>{{ nc.ipv4DefaultGateway }}</td>
+                        <td>{{ nc.ipv6 }}</td>
+                        <td>{{ nc.ipv6Subnet }}</td>
+                        <td>{{ nc.ipv6DefaultGateway }}</td>
+                        <td>{{ nc.dhcp ? 'Ja':'Nein' }}</td>
+                        <td>{{ nc.mac }}</td>
+                        <td>{{ nc.description }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-tasks"></i> CPU's</h3>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Familie</th>
+                    <th>Clock</th>
+                    <th>Cores</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for cpu in composition.cpus %}
+                    <tr>
+                        <td>{{ cpu.name }}</td>
+                        <td>{{ cpu.family }}</td>
+                        <td>{{ cpu.clock }}</td>
+                        <td>{{ cpu.cores }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-print"></i> Drucker</h3>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Treiber</th>
+                    <th>Version</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for printer in composition.printers %}
+                    <tr>
+                        <td>{{ printer.name }}</td>
+                        <td>{{ printer.driver }}</td>
+                        <td>{{ printer.version }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-terminal"></i> Software</h3>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Version</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for software in composition.softwares %}
+                    <tr>
+                        <td>{{ software.name }}</td>
+                        <td>{{ software.version }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <a class="btn btn-primary" href="{{ path('composition') }}">
+            Zurück zur Übersicht
+        </a>
+    </div>
+{% endblock %}

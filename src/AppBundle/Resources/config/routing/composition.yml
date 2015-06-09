@@ -6,6 +6,10 @@ composition_show:
     path:     /{id}/show
     defaults: { _controller: "AppBundle:Composition:show" }
 
+composition_show_old:
+    path:     /{id}/show-old
+    defaults: { _controller: "AppBundle:Composition:showOld" }
+
 composition_compare:
     path:     /{oldId}/compare/{newId}
     defaults: { _controller: "AppBundle:Composition:compare" }
