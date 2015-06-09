@@ -11,6 +11,10 @@
 
                 <div class="row">
                     <div class="col-md-6" id="scan_chart_div"></div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6" id="os_chart_div"></div>
                     <div class="col-md-6" id="software_chart_div"></div>
                 </div>
             </div>
@@ -25,7 +29,26 @@
         google.load('visualization', '1', {packages: ['corechart']});
         google.setOnLoadCallback(drawScanChart);
         google.setOnLoadCallback(drawSoftwareChart);
+        google.setOnLoadCallback(drawOperatingSystemChart);
 
+        function drawOperatingSystemChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['OperatingSystem', 'Installs'],
+                {% for os in compositionOperatingSystemStatistics %}
+                ['{{ os.label }}', {{ os.quantity }}],
+                {% endfor %}
+            ]);
+
+            var options = {
+                title: 'Betriebssysteme',
+                is3D: true,
+                width: 600,
+                height: 350,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('os_chart_div'));
+            chart.draw(data, options);
+        }
 
         function drawSoftwareChart() {
             var data = google.visualization.arrayToDataTable([

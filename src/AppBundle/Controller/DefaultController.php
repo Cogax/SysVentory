@@ -8,9 +8,11 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
+        $machineCompositions = $this->get("app.composition_controller")->getActualMachineCompositions();
         return $this->render('AppBundle:Default:index.html.twig', array(
             'compositionHistoryStatistics' => $this->getCompositionHistoryStatisticsData(),
-            'compositionSoftwareStatistics' => $this->getOperatingSystemData(),
+            'compositionSoftwareStatistics' => $this->getSoftwareData($machineCompositions),
+            'compositionOperatingSystemStatistics' => $this->getOperatingSystemData($machineCompositions),
         ));
     }
 
@@ -21,9 +23,8 @@ class DefaultController extends Controller
         return $stmt->fetchAll();
     }
 
-    private function getOperatingSystemData() {
+    private function getSoftwareData($machineCompositions) {
         $softwares = array();
-        $machineCompositions = $this->get("app.composition_controller")->getActualMachineCompositions();
         foreach($machineCompositions as $composition) {
             foreach($composition->getSoftwares() as $software) {
                 $key = $software->getName().' ('.$software->getVersion().')';
@@ -38,6 +39,23 @@ class DefaultController extends Controller
             }
         }
         return $softwares;
+    }
+
+    private function getOperatingSystemData($machineCompositions) {
+        $oss = array();
+        foreach($machineCompositions as $composition) {
+            $os = $composition->getOperatingSystem();
+            $key = $os->getName().' ('.$os->getVersion().', '.$os->getArchitecture().')';
+            if(!array_key_exists($key, $oss)) {
+                $oss[$key] = array(
+                  'label' => $key,
+                  'quantity' => 1
+                );
+            } else {
+                $oss[$key]['quantity']++;
+            }
+        }
+        return $oss;
     }
 
 }
