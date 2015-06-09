@@ -17,23 +17,13 @@ class CompositionController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $compositions = $em->getRepository('AppBundle:Composition')->findAll();
+        $distinctCompositions = $this->get("app.composition_controller")->getActualMachineCompositions();
 
-        // add history entries
+        $em = $this->getDoctrine()->getManager();
         $compositionHistories = array();
-        foreach($compositions as $composition) {
+        foreach($distinctCompositions as $composition) {
             $compositionHistory = $em->getRepository('AppBundle:CompositionHistory')->findOneByComposition($composition, array('time' => 'DESC'));
             $compositionHistories[$composition->getId()] = $compositionHistory;
-        }
-
-        // distinct compositions on machine uuid by date
-        $distinctCompositions = array();
-        foreach($compositions as $composition) {
-            if(!array_key_exists($composition->getMachine()->getUuid(), $distinctCompositions) ||
-                $compositionHistories[$composition->getId()]->getTime() > $compositionHistories[$distinctCompositions[$composition->getMachine()->getUuid()]->getId()]->getTime()) {
-                $distinctCompositions[$composition->getMachine()->getUuid()] = $composition;
-            }
         }
 
         return $this->render('AppBundle:Composition:index.html.twig', array(

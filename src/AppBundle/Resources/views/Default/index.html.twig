@@ -9,7 +9,10 @@
 
                 <h1 class="centered title">SysVentory</h1>
 
-                <div id="chart_div"></div>
+                <div class="row">
+                    <div class="col-md-6" id="scan_chart_div"></div>
+                    <div class="col-md-6" id="software_chart_div"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -17,16 +20,36 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['corechart', 'timeline']}]}"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script>
         google.load('visualization', '1', {packages: ['corechart']});
-        google.setOnLoadCallback(drawChart);
+        google.setOnLoadCallback(drawScanChart);
+        google.setOnLoadCallback(drawSoftwareChart);
 
-        function drawChart() {
 
+        function drawSoftwareChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Software', 'Installs'],
+                {% for software in compositionSoftwareStatistics %}
+                    ['{{ software.label }}', {{ software.quantity }}],
+                {% endfor %}
+            ]);
+
+            var options = {
+                title: 'Software Installationen',
+                is3D: true,
+                width: 600,
+                height: 350,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('software_chart_div'));
+            chart.draw(data, options);
+        }
+
+        function drawScanChart() {
             var data = new google.visualization.DataTable();
             data.addColumn('date', 'Time of Day');
-            data.addColumn('number', 'Anzahl Computer');
+            data.addColumn('number', 'Anzahl gescanter Computer');
 
             data.addRows([
                 {% for data in compositionHistoryStatistics %}
@@ -36,7 +59,7 @@
 
 
             var options = {
-                title: 'API Statistik',
+                title: 'Scan Statistik',
                 width: 600,
                 height: 350,
                 hAxis: {
@@ -45,15 +68,11 @@
                 },
                 vAxis: {
                     gridlines: {color: 'none'},
-                    minValue: 0,
-                    viewWindow:{
-                        max:6,
-                        min:0
-                    }
+                    minValue: 0
                 }
             };
 
-            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+            var chart = new google.visualization.LineChart(document.getElementById('scan_chart_div'));
 
             chart.draw(data, options);
 

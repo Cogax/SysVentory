@@ -32,6 +32,33 @@ class CompositionService extends Controller
     }
 
     /**
+     * @todo remove overhead by optimizing db select
+     * @return array
+     */
+    public function getActualMachineCompositions() {
+        // grab all compositions
+        $compositions = $this->entityManager->getRepository('AppBundle:Composition')->findAll();
+
+        // store the composition history for each composition
+        $compositionHistories = array();
+        foreach($compositions as $composition) {
+            $compositionHistory = $this->entityManager->getRepository('AppBundle:CompositionHistory')->findOneByComposition($composition, array('time' => 'DESC'));
+            $compositionHistories[$composition->getId()] = $compositionHistory;
+        }
+
+        // distinct compositions on machine uuid by newest date
+        $distinctCompositions = array();
+        foreach($compositions as $composition) {
+            if(!array_key_exists($composition->getMachine()->getUuid(), $distinctCompositions) ||
+              $compositionHistories[$composition->getId()]->getTime() > $compositionHistories[$distinctCompositions[$composition->getMachine()->getUuid()]->getId()]->getTime()) {
+                $distinctCompositions[$composition->getMachine()->getUuid()] = $composition;
+            }
+        }
+
+        return $distinctCompositions;
+    }
+
+    /**
      *
      *
      * @param $xmlComposition
