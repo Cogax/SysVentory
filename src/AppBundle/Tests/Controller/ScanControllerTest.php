@@ -23,7 +23,7 @@ class ScanControllerTest extends WebTestCase
         $this->login('testadmin', 'testadmin');
 
         $client = $this->createNetwork('123', 'test');
-        $this->assertEquals(Response::HTTP_CREATED, $client->getResponse()->getStatusCode());
+        $this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 
         $client = $this->createNetwork('123', 'test');
         $crawler = $client->getCrawler();
