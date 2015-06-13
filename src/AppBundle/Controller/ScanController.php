@@ -48,19 +48,22 @@ class ScanController extends Controller {
                     $em->flush();
                 }
                 if($this->get('kernel')->getEnvironment() != 'test') {
-                    //do something here
-                    $this->get("app.collector")->scan($scan->getRange());
+                    try {
+                        $this->get("app.collector")->scan($scan->getRange());
 
-                    $history = new ScanHistory();
-                    if(isset($network)) {
-                        $history->setNetwork($network);
-                    } else {
-                        $history->setNetRange($scan->getRange());
+                        $history = new ScanHistory();
+                        if(isset($network)) {
+                            $history->setNetwork($network);
+                        } else {
+                            $history->setNetRange($scan->getRange());
+                        }
+                        $history->setTime(new \DateTime());
+                        $em = $this->getDoctrine()->getManager();
+                        $em->persist($history);
+                        $em->flush();
+                    } catch(\Exception $e) {
+                        echo $e->getMessage();
                     }
-                    $history->setTime(new \DateTime());
-                    $em = $this->getDoctrine()->getManager();
-                    $em->persist($history);
-                    $em->flush();
                 }
                 return $this->render('AppBundle:Scan:done.html.twig', array());
             }
