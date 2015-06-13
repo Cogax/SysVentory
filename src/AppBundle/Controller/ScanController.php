@@ -62,7 +62,7 @@ class ScanController extends Controller {
                         $em->persist($history);
                         $em->flush();
                     } catch(\Exception $e) {
-                        echo $e->getMessage();
+                        //echo $e->getMessage();
                     }
                 }
                 return $this->render('AppBundle:Scan:done.html.twig', array());
@@ -91,7 +91,7 @@ class ScanController extends Controller {
                 $em->persist($history);
                 $em->flush();
             } catch(\Exception $e) {
-                echo $e->getMessage();
+                //echo $e->getMessage();
             }
         }
 
