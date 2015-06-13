@@ -25,6 +25,7 @@ class ScanController extends Controller {
 
         if('POST' === $request->getMethod()) {
             $form->handleRequest($request);
+            $em = $this->getDoctrine()->getManager();
 
             if($form->isValid()) {
 
@@ -43,7 +44,6 @@ class ScanController extends Controller {
                         ));
                     }
 
-                    $em = $this->getDoctrine()->getManager();
                     $em->persist($network);
                     $em->flush();
                 }
@@ -57,14 +57,9 @@ class ScanController extends Controller {
                         } else {
                             $history->setNetRange($scan->getRange());
                         }
-                        $history->setTime(new \DateTime());
-                        $em = $this->getDoctrine()->getManager();
-                        try {
-                            $em->persist($history);
-                            $em->flush();
-                        } catch(\Exception $e) {
-                            echo $e->getMessage();
-                        }
+                        $history->setTime(new \DateTime('now', new \DateTimeZone('Europe/Zurich')));
+                        $em->persist($history);
+                        $em->flush();
                     } catch(\Exception $e) {
                         //echo $e->getMessage();
                     }
@@ -91,7 +86,7 @@ class ScanController extends Controller {
 
                 $history = new ScanHistory();
                 $history->setNetwork($network);
-                $history->setTime(new \DateTime());
+                $history->setTime(new \DateTime('now', new \DateTimeZone('Europe/Zurich')));
                 $em->persist($history);
                 $em->flush();
             } catch(\Exception $e) {
