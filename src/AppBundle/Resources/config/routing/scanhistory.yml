@@ -1,7 +1,3 @@
 scanhistory:
     path:     /
     defaults: { _controller: "AppBundle:ScanHistory:index" }
-
-scanhistory_show:
-    path:     /{id}/show
-    defaults: { _controller: "AppBundle:ScanHistory:show" }

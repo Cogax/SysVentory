@@ -29,24 +29,4 @@ class ScanHistoryController extends Controller
             'entities' => $entities,
         ));
     }
-
-    /**
-     * Finds and displays a ScanHistory entity.
-     *
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('AppBundle:ScanHistory')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find ScanHistory entity.');
-        }
-
-
-        return $this->render('AppBundle:ScanHistory:show.html.twig', array(
-            'entity'      => $entity,
-        ));
-    }
 }
