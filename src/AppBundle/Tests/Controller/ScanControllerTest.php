@@ -20,7 +20,7 @@ class ScanControllerTest extends WebTestCase
 
     public function testCreateTwoNetworkWithSameNetRangeAndName()
     {
-        $this->login('testadmin', 'testadmin');
+        //$this->login('testadmin', 'testadmin');
 
         $client = $this->createNetwork('123', 'test');
         $this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
