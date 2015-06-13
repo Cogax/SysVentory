@@ -23,7 +23,7 @@ class ScanHistoryController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AppBundle:ScanHistory')->findBy(array(), array('time', 'DESC'));
+        $entities = $em->getRepository('AppBundle:ScanHistory')->findBy(array(), array('time' => 'DESC'));
 
         return $this->render('AppBundle:ScanHistory:index.html.twig', array(
             'entities' => $entities,
