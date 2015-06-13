@@ -79,13 +79,17 @@ class ScanController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $networks = $em->getRepository("AppBundle:Network")->findAll();
         foreach($networks as $network) {
-            $this->get("app.collector")->scan($network->getNetRange());
+            try {
+                $this->get("app.collector")->scan($network->getNetRange());
 
-            $history = new ScanHistory();
-            $history->setNetwork($network);
-            $history->setTime(new \DateTime());
-            $em->persist($history);
-            $em->flush();
+                $history = new ScanHistory();
+                $history->setNetwork($network);
+                $history->setTime(new \DateTime());
+                $em->persist($history);
+                $em->flush();
+            } catch(\Exception $e) {
+                echo $e->getMessage();
+            }
         }
 
         return $this->render('AppBundle:Scan:done.html.twig', array());

@@ -36,12 +36,12 @@ class ScanHistory
     private $netRange = null;
 
     /**
-     * @ORM\OneToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User")
      */
     private $user = null;
 
     /**
-     * @ORM\OneToOne(targetEntity="Network")
+     * @ORM\ManyToOne(targetEntity="Network")
      */
     private $network = null;
 
