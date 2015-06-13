@@ -13,6 +13,6 @@ class Collector {
         $cmd = "/srv/script/discovery.sh ".$netRange." ".self::USERNAME." ".self::PASSWORD." ".self::HOST." '".self::DOMAIN."'";
         $out = array();
         exec($cmd, $out);
-        print_r($out);
+        //print_r($out);
     }
 }
