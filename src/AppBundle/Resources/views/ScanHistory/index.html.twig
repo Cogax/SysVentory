@@ -16,7 +16,7 @@
             {% for entity in entities %}
                 <tr>
                     <td>{{ entity.id }}</td>
-                    <td>{% if entity.time %}{{ entity.time|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{% if entity.time %}{{ entity.time|date('d.m.Y H:i:s') }}{% endif %}</td>
                     <td>{{ entity.netRange }}</td>
                 </tr>
             {% endfor %}
