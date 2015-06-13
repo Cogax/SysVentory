@@ -4,13 +4,12 @@
     <div class="container">
         <h1>Scan History</h1>
 
-        <table class="scanhistory_list">
+        <table class="scanhistory_list table">
             <thead>
             <tr>
                 <th>Id</th>
                 <th>Time</th>
                 <th>Netrange</th>
-                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -19,9 +18,6 @@
                     <td><a href="{{ path('scanhistory_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                     <td>{% if entity.time %}{{ entity.time|date('Y-m-d H:i:s') }}{% endif %}</td>
                     <td>{{ entity.netRange }}</td>
-                    <td>
-                        <a href="{{ path('scanhistory_show', { 'id': entity.id }) }}">show</a>
-                    </td>
                 </tr>
             {% endfor %}
             </tbody>
