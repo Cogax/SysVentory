@@ -59,8 +59,12 @@ class ScanController extends Controller {
                         }
                         $history->setTime(new \DateTime());
                         $em = $this->getDoctrine()->getManager();
-                        $em->persist($history);
-                        $em->flush();
+                        try {
+                            $em->persist($history);
+                            $em->flush();
+                        } catch(\Exception $e) {
+                            echo $e->getMessage();
+                        }
                     } catch(\Exception $e) {
                         //echo $e->getMessage();
                     }

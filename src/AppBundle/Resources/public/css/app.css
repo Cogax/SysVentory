@@ -91,6 +91,10 @@ table:not(.tablesorter) thead th {
 .tablesorter-bootstrap thead th, .tablesorter-bootstrap thead td, .tablesorter-bootstrap tfoot th, .tablesorter-bootstrap tfoot td {
     font-size: 13px;
 }
+table.network_list,
+table.scanhistory_list {
+    background-color: white;
+}
 
 /*
 //== Forms ==//

@@ -1,33 +1,30 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
 {% block fos_user_content -%}
-    <h1>ScanHistory list</h1>
+    <div class="container">
+        <h1>Scan History</h1>
 
-    <table class="records_list">
-        <thead>
+        <table class="scanhistory_list">
+            <thead>
             <tr>
                 <th>Id</th>
                 <th>Time</th>
                 <th>Netrange</th>
                 <th>Actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('scanhistory_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{% if entity.time %}{{ entity.time|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ entity.netRange }}</td>
-                <td>
-                <ul>
-                    <li>
+            </thead>
+            <tbody>
+            {% for entity in entities %}
+                <tr>
+                    <td><a href="{{ path('scanhistory_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                    <td>{% if entity.time %}{{ entity.time|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{{ entity.netRange }}</td>
+                    <td>
                         <a href="{{ path('scanhistory_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
     {% endblock %}
