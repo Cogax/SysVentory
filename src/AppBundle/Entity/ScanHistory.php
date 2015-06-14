@@ -40,10 +40,6 @@ class ScanHistory
      */
     private $user = null;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Network")
-     */
-    private $network = null;
 
     /**
      * Get id
@@ -122,28 +118,5 @@ class ScanHistory
     public function getUser()
     {
         return $this->user;
-    }
-
-    /**
-     * Set network
-     *
-     * @param \AppBundle\Entity\Network $network
-     * @return ScanHistory
-     */
-    public function setNetwork(\AppBundle\Entity\Network $network = null)
-    {
-        $this->network = $network;
-
-        return $this;
-    }
-
-    /**
-     * Get network
-     *
-     * @return \AppBundle\Entity\Network 
-     */
-    public function getNetwork()
-    {
-        return $this->network;
     }
 }
