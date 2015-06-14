@@ -115,3 +115,10 @@ table.scanhistory_list {
     line-height: 130px;
     font-weight: bolder;
 }
+
+/*
+//== Login ==//
+*/
+.content.login {
+    padding-bottom: 20px;
+}
