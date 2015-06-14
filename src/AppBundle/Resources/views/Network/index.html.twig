@@ -20,16 +20,19 @@
                     <td>{{ entity.name }}</td>
                     <td>{{ entity.netRange }}</td>
                     <td>
-                        <a href="{{ path('network_edit', { 'id': entity.id }) }}">Bearbeiten</a> |
-                        <a href="{{ path('network_scan', { 'id': entity.id }) }}">Scanen</a>
+                        <a href="{{ path('network_edit', { 'id': entity.id }) }}">Bearbeiten</a>
+                        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                            | <a href="{{ path('network_scan', { 'id': entity.id }) }}">Scanen</a>
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
-
-        <a class="btn btn-primary" href="{{ path('scan_new') }}">
-            Neuen Scan erfassen
-        </a>
+        {% if is_granted("ROLE_INVENTOR") %}
+            <a class="btn btn-primary" href="{{ path('scan_new') }}">
+                Neues Netzwerk erfassen
+            </a>
+        {% endif %}
     </div>
 {% endblock %}

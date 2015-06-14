@@ -56,8 +56,8 @@ class User extends BaseUser
     /**
      * Add group
      *
-     * @param \AppBundle\Entity\UserGroup $group
-     * @return User
+     * @param \AppBundle\Entity\UserGroup|\FOS\UserBundle\Model\GroupInterface $group
+     * @return \AppBundle\Entity\User
      */
     public function addGroup(GroupInterface $group)
     {
@@ -69,7 +69,8 @@ class User extends BaseUser
     /**
      * Remove group
      *
-     * @param \AppBundle\Entity\UserGroup $group
+     * @param \AppBundle\Entity\UserGroup|\FOS\UserBundle\Model\GroupInterface $group
+     * @return $this|void
      */
     public function removeGroup(GroupInterface $group)
     {

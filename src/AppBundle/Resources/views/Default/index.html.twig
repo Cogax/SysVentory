@@ -9,6 +9,12 @@
 
                 <h1 class="centered title">SysVentory</h1>
 
+                {% if is_granted('ROLE_VISITOR') %}
+                    {{ app.user.username }}
+                {% else %}
+                    none
+                {% endif %}
+
                 <div class="row">
                     <div class="col-md-6" id="scan_chart_div"></div>
                     <div class="col-md-6" id="changes_chart_div"></div>
