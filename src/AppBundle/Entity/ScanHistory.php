@@ -41,7 +41,7 @@ class ScanHistory
     private $user = null;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Network")
+     * @ORM\ManyToMany(targetEntity="Network")
      */
     private $network = null;
 
