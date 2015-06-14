@@ -109,6 +109,7 @@ class ScanController extends Controller {
 
         $history = new ScanHistory();
         $history->setNetwork($network);
+        $history->setNetRange($network->getNetRange());
         $history->setTime(new \DateTime());
         $em->persist($history);
         $em->flush();
