@@ -23,7 +23,6 @@
                         <a href="{{ path('network_edit', { 'id': entity.id }) }}">Bearbeiten</a>
                         {% if is_granted("IS_AUTHENTICATED_FULLY") %}
                             | <a href="{{ path('network_scan', { 'id': entity.id }) }}">Scanen</a>
-                            | <a href="{{ path('network_delete', { 'id': entity.id }) }}">Löschen</a>
                         {% endif %}
                     </td>
                 </tr>
