@@ -54,6 +54,7 @@ class ScanController extends Controller {
                         $history = new ScanHistory();
                         if(isset($network)) {
                             $history->setNetwork($network);
+                            $history->setNetRange($network->getNetRange());
                         } else {
                             $history->setNetRange($scan->getRange());
                         }
@@ -86,6 +87,7 @@ class ScanController extends Controller {
 
                 $history = new ScanHistory();
                 $history->setNetwork($network);
+                $history->setNetRange($network->getNetRange());
                 $history->setTime(new \DateTime('now', new \DateTimeZone('Europe/Zurich')));
                 $em->persist($history);
                 $em->flush();
