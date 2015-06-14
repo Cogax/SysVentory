@@ -103,7 +103,7 @@ class ScanController extends Controller {
      */
     public function scanNetworkAction($id) {
         $em = $this->getDoctrine()->getManager();
-        $network = $em->getRepository("AppBundle:Network")->findById($id);
+        $network = $em->getRepository("AppBundle:Network")->findOneById($id);
 
         $this->get("app.collector")->scan($network->getNetRange());
 
