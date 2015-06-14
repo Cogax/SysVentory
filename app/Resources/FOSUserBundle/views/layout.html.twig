@@ -28,10 +28,16 @@
         <div id="navbar" class="navbar-collapse collapse">
             {% if is_granted("IS_AUTHENTICATED_FULLY") %}
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="{{ path('app_index') }}">Home</a></li>
-                    <li><a href="{{ path('composition') }}">Computer</a></li>
-                    <li><a href="{{ path('network') }}">Netzwerke</a></li>
-                    <li class="dropdown">
+                    <li {% if app.request.attributes.get( '_route' ) starts with 'app_index' %} class="active"{% endif %}>
+                        <a href="{{ path('app_index') }}">Home</a>
+                    </li>
+                    <li {% if app.request.attributes.get( '_route' ) starts with 'composition' %} class="active"{% endif %}>
+                        <a href="{{ path('composition') }}">Computer</a>
+                    </li>
+                    <li {% if app.request.attributes.get( '_route' ) starts with 'network' %} class="active"{% endif %}>
+                        <a href="{{ path('network') }}">Netzwerke</a>
+                    </li>
+                    <li class="dropdown {% if app.request.attributes.get( '_route' ) starts with 'scan' %}active{% endif %}">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Scans <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             {% if is_granted("ROLE_INVENTOR") %}
@@ -41,7 +47,7 @@
                             <li><a href="{{ path('scanhistory') }}">Scan Historie</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
+                    <li class="dropdown {% if app.request.attributes.get( '_route' ) starts with 'statistic' %}active{% endif %}">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Statistiken <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ path('statistic_scan') }}">Durchgeführte Scans</a></li>
@@ -94,6 +100,7 @@
     <script src="{{ asset('bundles/app/js/jquery.tablesorter.widgets.js') }}"></script>
     <script src="{{ asset('bundles/app/js/jquery.tablesorter.pager.js') }}"></script>
     <script src="{{ asset('bundles/app/js/tablesorter.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/app.js') }}"></script>
     <script src="{{ asset('bundles/app/js/util.js') }}"></script>
 {% endblock %}
 </body>
