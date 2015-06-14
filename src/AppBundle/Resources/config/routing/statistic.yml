@@ -1,0 +1,16 @@
+statistic_scan:
+    path:     /scan
+    defaults: { _controller: "AppBundle:Statistic:scan" }
+
+statistic_changes:
+    path:     /changes
+    defaults: { _controller: "AppBundle:Statistic:changes" }
+
+statistic_os:
+    path:     /os
+    defaults: { _controller: "AppBundle:Statistic:os" }
+
+statistic_software:
+    path:     /software
+    defaults: { _controller: "AppBundle:Statistic:software" }
+

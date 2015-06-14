@@ -1,0 +1,122 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block title %}AppBundle:Default:index{% endblock %}
+
+{% block fos_user_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <h1 class="centered">Erkannte änderungen</h1>
+
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-6" id="changes_week_chart_div"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-6" id="changes_month_chart_div"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-6" id="changes_year_chart_div"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script>
+        google.load('visualization', '1', {packages: ['corechart']});
+        google.setOnLoadCallback(drawChangesWeekChart);
+        google.setOnLoadCallback(drawChangesMonthChart);
+        google.setOnLoadCallback(drawChangesYearChart);
+
+        function drawChangesWeekChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('date', 'Kalenderwoche');
+            data.addColumn('number', 'Anzahl gescanter Computer');
+
+            data.addRows([
+                {% for d in datasetWeekly %}
+                [weeksToDate({{ d.dateyear }}, {{ d.dateweek }}, {{ d.dateday }}), {{ d.quantity }}],
+                {% endfor %}
+            ]);
+
+            var options = {
+                title: "Änderungen pro Woche",
+                width: 600,
+                height: 350,
+                hAxis: {
+                    format: 'w/yy'
+                },
+                vAxis: {
+                    gridlines: {color: 'none'},
+                    minValue: 0
+                }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('changes_week_chart_div'));
+
+            chart.draw(data, options);
+        }
+
+        function drawChangesMonthChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('date', 'Monat');
+            data.addColumn('number', 'Anzahl gescanter Computer');
+
+            data.addRows([
+                {% for d in datasetMonthly %}
+                [new Date({{ d.dateyear }}, {{ d.datemonth }}-1, 0), {{ d.quantity }}],
+                {% endfor %}
+            ]);
+
+            var options = {
+                title: "Änderungen pro Monat",
+                width: 600,
+                height: 350,
+                hAxis: {
+                    format: 'M/yy'
+                },
+                vAxis: {
+                    gridlines: {color: 'none'},
+                    minValue: 0
+                }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('changes_month_chart_div'));
+
+            chart.draw(data, options);
+        }
+
+        function drawChangesYearChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('date', 'Jahr');
+            data.addColumn('number', 'Anzahl gescanter Computer');
+
+            data.addRows([
+                {% for d in datasetYearly %}
+                [new Date({{ d.dateyear }}, 0, 0), {{ d.quantity }}],
+                {% endfor %}
+            ]);
+
+            var options = {
+                title: "Änderungen pro Jahr",
+                width: 600,
+                height: 350,
+                hAxis: {
+                    format: 'w/yy'
+                },
+                vAxis: {
+                    gridlines: {color: 'none'},
+                    minValue: 0
+                }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('changes_year_chart_div'));
+
+            chart.draw(data, options);
+        }
+    </script>
+{% endblock %}

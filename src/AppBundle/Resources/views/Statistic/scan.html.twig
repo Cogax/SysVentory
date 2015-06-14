@@ -1,0 +1,122 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block title %}AppBundle:Default:index{% endblock %}
+
+{% block fos_user_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <h1 class="centered">Durchgeführte Scans</h1>
+
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-6" id="scan_week_chart_div"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-6" id="scan_month_chart_div"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-6" id="scan_year_chart_div"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script>
+        google.load('visualization', '1', {packages: ['corechart']});
+        google.setOnLoadCallback(drawScanWeekChart);
+        google.setOnLoadCallback(drawScanMonthChart);
+        google.setOnLoadCallback(drawScanYearChart);
+
+        function drawScanWeekChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('date', 'Kalenderwoche');
+            data.addColumn('number', 'Anzahl gescanter Computer');
+
+            data.addRows([
+                {% for d in datasetWeekly %}
+                    [weeksToDate({{ d.dateyear }}, {{ d.dateweek }}, {{ d.dateday }}), {{ d.quantity }}],
+                {% endfor %}
+            ]);
+
+            var options = {
+                title: "Scan's pro Woche",
+                width: 600,
+                height: 350,
+                hAxis: {
+                    format: 'w/yy'
+                },
+                vAxis: {
+                    gridlines: {color: 'none'},
+                    minValue: 0
+                }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('scan_week_chart_div'));
+
+            chart.draw(data, options);
+        }
+
+        function drawScanMonthChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('date', 'Monat');
+            data.addColumn('number', 'Anzahl gescanter Computer');
+
+            data.addRows([
+                {% for d in datasetMonthly %}
+                [new Date({{ d.dateyear }}, {{ d.datemonth }}-1, 0), {{ d.quantity }}],
+                {% endfor %}
+            ]);
+
+            var options = {
+                title: "Scan's pro Monat",
+                width: 600,
+                height: 350,
+                hAxis: {
+                    format: 'M/yy'
+                },
+                vAxis: {
+                    gridlines: {color: 'none'},
+                    minValue: 0
+                }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('scan_month_chart_div'));
+
+            chart.draw(data, options);
+        }
+
+        function drawScanYearChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('date', 'Jahr');
+            data.addColumn('number', 'Anzahl gescanter Computer');
+
+            data.addRows([
+                {% for d in datasetYearly %}
+                [new Date({{ d.dateyear }}, 0, 0), {{ d.quantity }}],
+                {% endfor %}
+            ]);
+
+            var options = {
+                title: "Scan's pro Jahr",
+                width: 600,
+                height: 350,
+                hAxis: {
+                    format: 'w/yy'
+                },
+                vAxis: {
+                    gridlines: {color: 'none'},
+                    minValue: 0
+                }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('scan_year_chart_div'));
+
+            chart.draw(data, options);
+        }
+    </script>
+{% endblock %}

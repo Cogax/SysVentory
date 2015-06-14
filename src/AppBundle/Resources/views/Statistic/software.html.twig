@@ -1,0 +1,47 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block title %}AppBundle:Default:index{% endblock %}
+
+{% block fos_user_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <h1 class="centered">Eingesetzte Software</h1>
+
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3" id="software_chart_div"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script>
+        google.load('visualization', '1', {packages: ['corechart']});
+        google.setOnLoadCallback(drawSoftwareChart);
+
+
+        function drawSoftwareChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Software', 'Installs'],
+                {% for software in dataset %}
+                    ['{{ software.label }}', {{ software.quantity }}],
+                {% endfor %}
+            ]);
+
+            var options = {
+                title: 'Software',
+                is3D: true,
+                width: 600,
+                height: 350,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('software_chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
+{% endblock %}

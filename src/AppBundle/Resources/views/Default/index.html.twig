@@ -5,139 +5,28 @@
 {% block fos_user_content %}
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6 col-md-offset-3">
 
-                <h1 class="centered title">SysVentory</h1>
-
-                {% if is_granted('ROLE_VISITOR') %}
-                    {{ app.user.username }}
-                {% else %}
-                    none
-                {% endif %}
-
-                <div class="row">
-                    <div class="col-md-6" id="scan_chart_div"></div>
-                    <div class="col-md-6" id="changes_chart_div"></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6" id="os_chart_div"></div>
-                    <div class="col-md-6" id="software_chart_div"></div>
+                <h1 class="centered title">SysVentory</h1><br><br>
+                <strong>Herlich Willkommen, {{ app.user.username }}!</strong>
+                <p>
+                    Dies ist eine Fächerübergreifende, interdisziplinäre Projektarbeit welche im 6. Semester zum Lehrgang zum Dipl. Informatiker HF entwickelt wurde. Bei der Umsetzung
+                    wurde erstmals das PHP5 Framework "Symfony2" eingesetzt.
+                </p>
+                <p>
+                    Diese Software ist OpenSource und wird auf Github gehostet. Zudem wurde Travis-CI für einen sauberen Contiunous-Integration Workflow benutzt.
+                </p>
+                <br>
+                <div align="center">
+                    <a class="github-button" href="https://github.com/Cogax/SysVentoryServer" data-icon="octicon-eye" aria-label="Watch Cogax/SysVentoryServer on GitHub">Watch</a>
+                    <a class="github-button" href="https://github.com/Cogax/SysVentoryServer/fork" data-icon="octicon-git-branch" aria-label="Fork Cogax/SysVentoryServer on GitHub">Fork</a>
+                    <a class="github-button" href="https://github.com/Cogax/SysVentoryServer/archive/master.zip" data-icon="octicon-cloud-download" aria-label="Download Cogax/SysVentoryServer on GitHub">Download</a>
+                    <a class="github-button" href="https://github.com/Cogax" aria-label="Follow @Cogax on GitHub">Follow @Cogax</a>
+                    <br>
+                    <img src="https://travis-ci.org/Cogax/SysVentoryServer.svg?branch=master" />
                 </div>
             </div>
         </div>
     </div>
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script>
-        google.load('visualization', '1', {packages: ['corechart']});
-        google.setOnLoadCallback(drawScanChart);
-        google.setOnLoadCallback(drawChangesChart);
-        google.setOnLoadCallback(drawSoftwareChart);
-        google.setOnLoadCallback(drawOperatingSystemChart);
-
-        function drawOperatingSystemChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['OperatingSystem', 'Installs'],
-                {% for os in compositionOperatingSystemStatistics %}
-                ['{{ os.label }}', {{ os.quantity }}],
-                {% endfor %}
-            ]);
-
-            var options = {
-                title: 'Betriebssysteme',
-                is3D: true,
-                width: 600,
-                height: 350,
-            };
-
-            var chart = new google.visualization.PieChart(document.getElementById('os_chart_div'));
-            chart.draw(data, options);
-        }
-
-        function drawSoftwareChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Software', 'Installs'],
-                {% for software in compositionSoftwareStatistics %}
-                    ['{{ software.label }}', {{ software.quantity }}],
-                {% endfor %}
-            ]);
-
-            var options = {
-                title: 'Software',
-                is3D: true,
-                width: 600,
-                height: 350,
-            };
-
-            var chart = new google.visualization.PieChart(document.getElementById('software_chart_div'));
-            chart.draw(data, options);
-        }
-
-        function drawScanChart() {
-            var data = new google.visualization.DataTable();
-            data.addColumn('date', 'Time of Day');
-            data.addColumn('number', 'Anzahl gescanter Computer');
-
-            data.addRows([
-                {% for data in compositionHistoryStatistics %}
-                    [new Date({{ data.dateday|date("Y") }}, {{ data.dateday|date("m")-1 }}, {{ data.dateday|date("d") }}), {{ data.quantity }}],
-                {% endfor %}
-            ]);
-
-
-            var options = {
-                title: "Scan's",
-                width: 600,
-                height: 350,
-                hAxis: {
-                    format: 'd.M.yy',
-                    gridlines: {count: 15}
-                },
-                vAxis: {
-                    gridlines: {color: 'none'},
-                    minValue: 0
-                }
-            };
-
-            var chart = new google.visualization.LineChart(document.getElementById('scan_chart_div'));
-
-            chart.draw(data, options);
-
-        }
-
-        function drawChangesChart() {
-            var data = new google.visualization.DataTable();
-            data.addColumn('date', 'Time of Day');
-            data.addColumn('number', 'Anzahl änderungen');
-
-            data.addRows([
-                {% for data in compositionChangingStatistics %}
-                [new Date({{ data.date|date("Y") }}, {{ data.date|date("m")-1 }}, {{ data.date|date("d") }}), {{ data.quantity }}],
-                {% endfor %}
-            ]);
-
-
-            var options = {
-                title: 'Änderungen',
-                width: 600,
-                height: 350,
-                hAxis: {
-                    format: 'd.M.yy',
-                    gridlines: {count: 15}
-                },
-                vAxis: {
-                    gridlines: {color: 'none'},
-                    minValue: 0
-                }
-            };
-
-            var chart = new google.visualization.LineChart(document.getElementById('changes_chart_div'));
-
-            chart.draw(data, options);
-
-        }
-    </script>
+    <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
 {% endblock %}
