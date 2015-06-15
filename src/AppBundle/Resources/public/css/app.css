@@ -68,6 +68,9 @@ h1.inverse {
     font-size: 20px;
     margin-right: 15px;
 }
+.panel {
+    overflow-x: scroll;
+}
 
 /*
 //-- Tables --//
