@@ -10,14 +10,12 @@ use AppBundle\Form\ScanHistoryType;
 
 /**
  * ScanHistory controller.
- *
  */
 class ScanHistoryController extends Controller
 {
 
     /**
      * Lists all ScanHistory entities.
-     *
      */
     public function indexAction()
     {

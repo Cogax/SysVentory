@@ -7,6 +7,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class StatisticController extends Controller
 {
 
+    /**
+     * Scan statistics
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Doctrine\DBAL\DBALException
+     */
     public function scanAction() {
         $conn = $this->container->get('database_connection');
 
@@ -32,6 +38,11 @@ class StatisticController extends Controller
         ));
     }
 
+    /**
+     * Changes Statistics
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function changesAction() {
         $em = $this->getDoctrine()->getManager();
 
@@ -87,6 +98,11 @@ class StatisticController extends Controller
         ));
     }
 
+    /**
+     * Operatingsystems statistic
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function osAction() {
         $machineCompositions = $this->get("app.composition_controller")->getActualMachineCompositions();
         $oss = array();
@@ -108,6 +124,11 @@ class StatisticController extends Controller
         ));
     }
 
+    /**
+     * Software statistic
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function softwareAction() {
         $machineCompositions = $this->get("app.composition_controller")->getActualMachineCompositions();
         $softwares = array();

@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-
 use AppBundle\Entity\Network;
 use AppBundle\Entity\ScanHistory;
 use AppBundle\Form\Model\Scan;
@@ -98,6 +97,8 @@ class ScanController extends Controller {
     }
 
     /**
+     * Scans a specific Network given by it's id
+     *
      * @param $id
      * @return \Symfony\Component\HttpFoundation\Response
      */

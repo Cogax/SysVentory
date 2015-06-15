@@ -16,7 +16,6 @@ class NetworkController extends Controller
 {
     /**
      * Lists all Network entities.
-     *
      */
     public function indexAction()
     {
@@ -31,7 +30,6 @@ class NetworkController extends Controller
 
     /**
      * Finds and displays a Network entity.
-     *
      */
     public function showAction($id)
     {
@@ -53,7 +51,6 @@ class NetworkController extends Controller
 
     /**
      * Displays a form to edit an existing Network entity.
-     *
      */
     public function editAction($id)
     {
@@ -79,7 +76,6 @@ class NetworkController extends Controller
     * Creates a form to edit a Network entity.
     *
     * @param Network $entity The entity
-    *
     * @return \Symfony\Component\Form\Form The form
     */
     private function createEditForm(Network $entity)
@@ -93,9 +89,9 @@ class NetworkController extends Controller
 
         return $form;
     }
+
     /**
      * Edits an existing Network entity.
-     *
      */
     public function updateAction(Request $request, $id)
     {
@@ -123,9 +119,9 @@ class NetworkController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
+
     /**
      * Deletes a Network entity.
-     *
      */
     public function deleteAction(Request $request, $id)
     {
@@ -151,7 +147,6 @@ class NetworkController extends Controller
      * Creates a form to delete a Network entity by id.
      *
      * @param mixed $id The entity id
-     *
      * @return \Symfony\Component\Form\Form The form
      */
     private function createDeleteForm($id)

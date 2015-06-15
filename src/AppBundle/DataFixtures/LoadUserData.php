@@ -2,7 +2,6 @@
 
 namespace AppBundle\DataFixtures;
 
-
 use AppBundle\Entity\User;
 use AppBundle\Entity\UserGroup;
 use Doctrine\Common\DataFixtures\FixtureInterface;

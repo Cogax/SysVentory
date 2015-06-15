@@ -13,7 +13,6 @@ class CompositionController extends Controller
 
     /**
      * Lists all Composition entities.
-     *
      */
     public function indexAction()
     {
@@ -34,7 +33,6 @@ class CompositionController extends Controller
 
     /**
      * Finds and displays a Composition entity.
-     *
      */
     public function showAction($id)
     {
@@ -70,7 +68,6 @@ class CompositionController extends Controller
 
     /**
      * Finds and displays a Composition entity.
-     *
      */
     public function showOldAction($id)
     {
