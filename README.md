@@ -15,5 +15,9 @@ https://travis-ci.org/Cogax/SysVentoryServer
 ### Development:
 1. `git clone`
 2. `cd SysVentoryServer`
-3. `composer install`
-4. For a lightweight local webserver: `php app/console server:run`
+3. Install dependencies: `composer install`
+4. Create database: `php app/console doctrine:database:create`
+5. Create schema: `php app/console doctrine:schema:create`
+6. Load Fixtures (Users): `php app/console doctrine:fixtures:load --fixtures=src/AppBundle/DataFixtures`
+7. For a lightweight local webserver: `php app/console server:run`
+8. Login with visitor/visitor or inventor/inventor
