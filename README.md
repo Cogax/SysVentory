@@ -1,14 +1,17 @@
 # SysVentoryServer
 [![Build Status](https://travis-ci.org/Cogax/SysVentoryServer.svg?branch=master)](https://travis-ci.org/Cogax/SysVentoryServer)
 
-## Branches
-* `master` is the development branch which isn't always sable
-* `prod` is the productive branch, which always should be stable
+## Documentation
+There is a [project documentation](https://github.com/Cogax/SysVentoryServer/blob/master/doc/Dokumentation.pdf) written in german.
 
-### Continuous Integration
+## Continuous Integration
 https://travis-ci.org/Cogax/SysVentoryServer
 * Builds only `master` branch
 * If `master` build success it will push to `prod` branch
+
+### Branches
+* `master` is the development branch which isn't always sable
+* `prod` is the productive branch, which always should be stable
 
 ## Installation
 
@@ -21,3 +24,13 @@ https://travis-ci.org/Cogax/SysVentoryServer
 6. Load Fixtures (Users): `php app/console doctrine:fixtures:load --fixtures=src/AppBundle/DataFixtures`
 7. For a lightweight local webserver: `php app/console server:run`
 8. Login with visitor/visitor or inventor/inventor
+
+## Screenshots
+![Login](https://github.com/Cogax/SysVentoryServer/blob/master/doc/screenshots/login.png)
+![Login](https://github.com/Cogax/SysVentoryServer/blob/master/doc/screenshots/login.png)
+![Login](https://github.com/Cogax/SysVentoryServer/blob/master/doc/screenshots/login.png)
+![Login](https://github.com/Cogax/SysVentoryServer/blob/master/doc/screenshots/login.png)
+![Login](https://github.com/Cogax/SysVentoryServer/blob/master/doc/screenshots/login.png)
+
+
+
