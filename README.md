@@ -27,10 +27,11 @@ https://travis-ci.org/Cogax/SysVentoryServer
 
 ## Screenshots
 ![Login](https://github.com/Cogax/SysVentoryServer/blob/master/doc/screenshots/login.png)
-![Login](https://github.com/Cogax/SysVentoryServer/blob/master/doc/screenshots/login.png)
-![Login](https://github.com/Cogax/SysVentoryServer/blob/master/doc/screenshots/login.png)
-![Login](https://github.com/Cogax/SysVentoryServer/blob/master/doc/screenshots/login.png)
-![Login](https://github.com/Cogax/SysVentoryServer/blob/master/doc/screenshots/login.png)
-
-
-
+![Home](https://github.com/Cogax/SysVentoryServer/blob/master/doc/screenshots/home.png)
+![Computers](https://github.com/Cogax/SysVentoryServer/blob/master/doc/screenshots/computers.png)
+![Computer](https://github.com/Cogax/SysVentoryServer/blob/master/doc/screenshots/computer.png)
+![Compare](https://github.com/Cogax/SysVentoryServer/blob/master/doc/screenshots/compare.png)
+![Networks](https://github.com/Cogax/SysVentoryServer/blob/master/doc/screenshots/networks.png)
+![New scan](https://github.com/Cogax/SysVentoryServer/blob/master/doc/screenshots/scan_new.png)
+![Scan history](https://github.com/Cogax/SysVentoryServer/blob/master/doc/screenshots/scanhistory.png)
+![Software statistics](https://github.com/Cogax/SysVentoryServer/blob/master/doc/screenshots/stat_software.png)
