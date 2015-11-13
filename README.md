@@ -1,5 +1,5 @@
-# SysVentoryServer
-[![Build Status](https://travis-ci.org/Cogax/SysVentoryServer.svg?branch=master)](https://travis-ci.org/Cogax/SysVentoryServer)
+# SysVentory
+[![Build Status](https://travis-ci.org/Cogax/SysVentory.svg?branch=master)](https://travis-ci.org/Cogax/SysVentory)
 
 ## Documentation
 There is a [project documentation](https://github.com/Cogax/SysVentoryServer/blob/master/doc/Dokumentation.pdf) written in german.
