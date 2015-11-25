@@ -2,10 +2,10 @@
 [![Build Status](https://travis-ci.org/Cogax/SysVentory.svg?branch=master)](https://travis-ci.org/Cogax/SysVentory)
 
 ## Documentation
-There is a [project documentation](https://github.com/Cogax/SysVentoryServer/blob/master/doc/Dokumentation.pdf) written in german.
+There is a [project documentation](https://github.com/Cogax/SysVentory/blob/master/doc/Dokumentation.pdf) written in german.
 
 ## Continuous Integration
-https://travis-ci.org/Cogax/SysVentoryServer
+https://travis-ci.org/Cogax/SysVentory
 * Builds only `master` branch
 * If `master` build success it will push to `prod` branch
 
